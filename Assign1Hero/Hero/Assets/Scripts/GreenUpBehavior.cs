@@ -11,6 +11,10 @@ public class GreenUpBehavior : MonoBehaviour
 
         public bool followMousePos = true;
 
+        private float cooldown = 0.2f;
+
+        private float nextFire = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,11 +31,14 @@ public class GreenUpBehavior : MonoBehaviour
 
         Vector3 pos = transform.position;
 
+        // Follow Mouse
         if(followMousePos)
         {
             pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos.z = 0f;
         }
+
+        // Use keyboard keys
         else
         {
             if (Input.GetKey(KeyCode.W))
@@ -43,25 +50,33 @@ public class GreenUpBehavior : MonoBehaviour
             {
                 pos -= ((speed * Time.smoothDeltaTime) * transform.up);
             }
-
-            if (Input.GetKey(KeyCode.D))
-            {
-                transform.Rotate(transform.forward, -heroRotateSpeed * Time.smoothDeltaTime);
-            }
-
-            if (Input.GetKey(KeyCode.A))
-            {
-                transform.Rotate(transform.forward, heroRotateSpeed * Time.smoothDeltaTime);
-            }
         }
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        // Rotate
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.Rotate(transform.forward, -heroRotateSpeed * Time.smoothDeltaTime);
+        }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.Rotate(transform.forward, heroRotateSpeed * Time.smoothDeltaTime);
+        }
+
+        // Shoot Eggs
+        if(Input.GetKey(KeyCode.Space) && Time.time > nextFire)
         {
             GameObject e = Instantiate(Resources.Load("Prefabs/Egg") as GameObject);
-            e.transform.localPosition = transform.localPosition;
-            e.transform.rotation = transform.rotation;
+            if(e != null)
+            {
+                e.transform.localPosition = transform.localPosition;
+                e.transform.rotation = transform.rotation;
+            }
+
+            nextFire = Time.time + cooldown;
         }
 
+        // Update Position
         transform.position = pos;
     }
 }
