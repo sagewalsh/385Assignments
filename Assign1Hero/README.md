@@ -10,18 +10,17 @@ Size: 5x5
 
 
 Control: Follows the mouse, or controlled by keyboard control
-
-        (M toggles between the two)
-
-
-Keyboard Control: W gradually increases the Hero's speed
-
-                  S gradually decreases the Hero's speed
+(M toggles between the two)
 
 
-Hero Rotation:  A rotates the hero counter-clockwise
+Keyboard Control:
+* W gradually increases the Hero's speed
+* S gradually decreases the Hero's speed
 
-                D rotates the her clockwise
+
+Hero Rotation:
+* A rotates the hero counter-clockwise
+* D rotates the her clockwise
 
 Rotation Speed: 45 degrees/second
 
@@ -46,10 +45,8 @@ Speed: 40 units/second
 
 
 Expiration: 
-
-    * Passes the Bounds of the World
-
-    * At Collision with Enemy
+* Passes the Bounds of the World
+* At Collision with Enemy
 
 
 ## Enemy
@@ -64,39 +61,29 @@ Location: Randomly spawned within 90% of the world boundaries
 
 
 Expiration: 
-
-    * At Collision with Hero
-
-    * At 4th Collision with an Egg
-
-        * Each egg costs 80 percent of enemy's current energy
+* At Collision with Hero
+* At 4th Collision with an Egg
+* Each egg costs 80 percent of enemy's current energy
 
 
-Spawning: A new enemy is spawned so that the number and location 
-
-          conditions are always met
+Spawning: A new enemy is spawned so that the number and location
+conditions are always met
 
 
 ## Application Status
 
 The application prints out the following status:
 
-    * Hero:
+* Hero:
+    * Control mode: mouse / keyboard
+    * Number of times the hero touched the enemy
 
-        * Control mode: mouse / keyboard
+* Egg:
+    * number of eggs currently in the world
 
-        * Number of times the hero touched the enemy
+* Enemy:
+    * Total current enemy count
+    * Total number destroyed
 
-    * Egg:
-
-        * number of eggs currently in the world
-
-    * Enemy:
-
-        * Total current enemy count
-
-        * Total number destroyed
-
-    * Q-key:
-
-        * Quits the application
+* Q-key:
+    * Quits the application
