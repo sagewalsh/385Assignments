@@ -30,8 +30,6 @@ Rotation Speed: 45 degrees/second
 
 Initial Speed: 20 units/second
 
-Max Speed:     40 units/second
-
 
 Space-Bar: Spawns an egg-projectile at a rate of one egg every 0.2 seconds
 
