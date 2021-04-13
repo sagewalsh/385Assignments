@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GreenUpBehavior : MonoBehaviour
 {
+        public Text enemyCountText = null;
         public float speed = 20f;
 
         // 90 Degrees in 2 seconds
@@ -15,10 +17,14 @@ public class GreenUpBehavior : MonoBehaviour
 
         private float nextFire = 0f;
 
+        private int planesTouched = 0;
+
+        private GameController gameCon = null;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameCon = FindObjectOfType<GameController>();
     }
 
     void Update()
@@ -78,5 +84,13 @@ public class GreenUpBehavior : MonoBehaviour
 
         // Update Position
         transform.position = pos;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        planesTouched++;
+        Destroy(collision.gameObject);
+        enemyCountText.text = "Planes Touched: " + planesTouched;
+        gameCon.EnemyDestroyed();
     }
 }
