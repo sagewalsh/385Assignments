@@ -1,23 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
     private int maxPlanes = 10;
-
     private int numberOfPlanes = 0;
+    private int planesDestroyed = 0;
+    private int numberOfEggs = 0;
+
+    public Text enemyText = null;
+    public Text eggText = null;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        enemyText.text = "ENEMY: Count(" + numberOfPlanes +
+                         ") Destroyed(" + planesDestroyed + ")";
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.Escape))
+        if(Input.GetKey(KeyCode.Q))
         {
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
@@ -40,10 +46,26 @@ public class GameController : MonoBehaviour
             e.transform.localPosition = pos;
             numberOfPlanes++;
         }
+
+        enemyText.text = "ENEMY: Count(" + numberOfPlanes +
+                         ") Destroyed(" + planesDestroyed + ")";
+
+        eggText.text = "EGG: OnScreen(" + numberOfEggs + ")";
     }
 
     public void EnemyDestroyed()
     {
         numberOfPlanes--;
+        planesDestroyed++;
+    }
+
+    public void EggCreated()
+    {
+        numberOfEggs++;
+    }
+
+    public void EggDestroyed()
+    {
+        numberOfEggs--;
     }
 }

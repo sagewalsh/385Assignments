@@ -5,18 +5,29 @@ using UnityEngine.UI;
 
 public class GreenUpBehavior : MonoBehaviour
 {
+        // Variables for UI text
         public Text enemyCountText = null;
+        public Text heroControl = null;
+
+        
+        // Variables to control Hero
         public float speed = 20f;
 
         // 90 Degrees in 2 seconds
         public float heroRotateSpeed = 90f / 2f;
 
+        private Rigidbody2D rb;
+
         public bool followMousePos = true;
 
+
+        // Varaibles to Control Egg Shooting
         private float cooldown = 0.2f;
 
         private float nextFire = 0f;
 
+
+        // Variables to control Plane Destruction
         private int planesTouched = 0;
 
         private GameController gameCon = null;
@@ -25,6 +36,9 @@ public class GreenUpBehavior : MonoBehaviour
     void Start()
     {
         gameCon = FindObjectOfType<GameController>();
+        rb = GetComponent<Rigidbody2D>();
+
+        enemyCountText.text = "PlanesTouched(0)";
     }
 
     void Update()
@@ -40,6 +54,7 @@ public class GreenUpBehavior : MonoBehaviour
         // Follow Mouse
         if(followMousePos)
         {
+            heroControl.text = "HERO: Control(Mouse)";
             pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos.z = 0f;
         }
@@ -47,14 +62,15 @@ public class GreenUpBehavior : MonoBehaviour
         // Use keyboard keys
         else
         {
+            heroControl.text = "HERO: Control(Keys)";
             if (Input.GetKey(KeyCode.W))
             {
-                pos += ((speed * Time.smoothDeltaTime) * transform.up);
+                speed += 0.1f;
             }
 
             if (Input.GetKey(KeyCode.S))
-            {
-                pos -= ((speed * Time.smoothDeltaTime) * transform.up);
+            {            
+                speed -= 0.1f;
             }
         }
 
@@ -77,6 +93,7 @@ public class GreenUpBehavior : MonoBehaviour
             {
                 e.transform.localPosition = transform.localPosition;
                 e.transform.rotation = transform.rotation;
+                gameCon.EggCreated();
             }
 
             nextFire = Time.time + cooldown;
@@ -84,13 +101,17 @@ public class GreenUpBehavior : MonoBehaviour
 
         // Update Position
         transform.position = pos;
+        rb.velocity = transform.up * speed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        planesTouched++;
-        Destroy(collision.gameObject);
-        enemyCountText.text = "Planes Touched: " + planesTouched;
-        gameCon.EnemyDestroyed();
+        if(collision.tag == "Plane")
+        {
+            planesTouched++;
+            Destroy(collision.gameObject);
+            enemyCountText.text = "PlanesTouched(" + planesTouched + ")";
+            gameCon.EnemyDestroyed();
+        }
     }
 }
