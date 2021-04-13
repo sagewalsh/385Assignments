@@ -31,7 +31,7 @@ public class PlaneBehavior : MonoBehaviour
         if(hitsByEgg >= 4)
         {
             Destroy(gameObject); // Kill itself
-            
+            gameCon.EnemyDestroyed(); // Update Controller
         }
         else
         {
