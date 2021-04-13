@@ -4,28 +4,32 @@ using UnityEngine;
 
 public class EggBehavior : MonoBehaviour
 {
-
+    // Travel speed of the egg
     public const float eggSpeed = 40f;
 
+    // Game Controller
     private GameController gameCon = null;
+
+    // Camera Script
     private CameraSupport s = null;
 
 
-    // Start is called before the first frame update
+
     void Start()
     {
         gameCon = FindObjectOfType<GameController>();
         s = Camera.main.GetComponent<CameraSupport>();
     }
 
-    // Update is called once per frame
+
+
     void Update()
     {
+        // Travel
         transform.position += transform.up * (eggSpeed * Time.smoothDeltaTime);
         
         // If outside the game window: kill itself
         Vector3 pos = transform.position;
-
         if( !s.GetWorldBounds().Contains(pos))
         {
             Destroy(transform.gameObject);
@@ -35,13 +39,18 @@ public class EggBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // If Egg hits a plane
         if(collision.tag == "Plane")
         {
+            // Get Plane Script
             PlaneBehavior plane = collision.GetComponent<PlaneBehavior>();
             plane.Hit();
+
+            // Delete the Egg
             Destroy(gameObject);
+
+            // Update the Controller
             gameCon.EggDestroyed();
-            gameCon.EnemyDestroyed();
         }
     }
 }

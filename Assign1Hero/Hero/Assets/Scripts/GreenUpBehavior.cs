@@ -12,18 +12,13 @@ public class GreenUpBehavior : MonoBehaviour
         
         // Variables to control Hero
         public float speed = 20f;
-
-        // 90 Degrees in 2 seconds
         public float heroRotateSpeed = 90f / 2f;
-
         private Rigidbody2D rb;
-
         public bool followMousePos = true;
 
 
         // Varaibles to Control Egg Shooting
         private float cooldown = 0.2f;
-
         private float nextFire = 0f;
 
 
@@ -32,22 +27,28 @@ public class GreenUpBehavior : MonoBehaviour
 
         private GameController gameCon = null;
 
-    // Start is called before the first frame update
+
+
     void Start()
     {
+        // Get the Game Controller
         gameCon = FindObjectOfType<GameController>();
+
+        // Get this object's Rigidbody component
         rb = GetComponent<Rigidbody2D>();
 
+        // Start text
         enemyCountText.text = "PlanesTouched(0)";
     }
 
     void Update()
     {
-
+        // Toggle between mouse and keyboard controls
         if(Input.GetKeyDown(KeyCode.M))
         {
             followMousePos = !followMousePos;
         }
+
 
         Vector3 pos = transform.position;
 
@@ -63,23 +64,27 @@ public class GreenUpBehavior : MonoBehaviour
         else
         {
             heroControl.text = "HERO: Control(Keys)";
+
+            // Speed up
             if (Input.GetKey(KeyCode.W))
             {
                 speed += 0.1f;
             }
 
+            // Speed up in opposite direction
             if (Input.GetKey(KeyCode.S))
             {            
                 speed -= 0.1f;
             }
         }
 
-        // Rotate
+        // Rotate Clockwise
         if (Input.GetKey(KeyCode.D))
         {
             transform.Rotate(transform.forward, -heroRotateSpeed * Time.smoothDeltaTime);
         }
 
+        // Rotate Counterclockwise
         if (Input.GetKey(KeyCode.A))
         {
             transform.Rotate(transform.forward, heroRotateSpeed * Time.smoothDeltaTime);
@@ -91,26 +96,31 @@ public class GreenUpBehavior : MonoBehaviour
             GameObject e = Instantiate(Resources.Load("Prefabs/Egg") as GameObject);
             if(e != null)
             {
+                // Shoot eggs: from arrow pos, in arrow direction
                 e.transform.localPosition = transform.localPosition;
                 e.transform.rotation = transform.rotation;
                 gameCon.EggCreated();
             }
 
+            // Cool down between egg shots
             nextFire = Time.time + cooldown;
         }
 
-        // Update Position
+        // Update Position and speed
         transform.position = pos;
         rb.velocity = transform.up * speed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // If Arrow collided with a Plane
         if(collision.tag == "Plane")
         {
             planesTouched++;
-            Destroy(collision.gameObject);
             enemyCountText.text = "PlanesTouched(" + planesTouched + ")";
+
+            // Delete Plane
+            Destroy(collision.gameObject);
             gameCon.EnemyDestroyed();
         }
     }
