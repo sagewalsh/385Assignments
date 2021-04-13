@@ -33,8 +33,8 @@ public class GameController : MonoBehaviour
 
             GameObject e = Instantiate(Resources.Load("Prefabs/PlaneEnemy") as GameObject);
             Vector3 pos;
-            pos.x = s.GetWorldBounds().min.x + Random.value * s.GetWorldBounds().size.x;
-            pos.y = s.GetWorldBounds().min.y + Random.value * s.GetWorldBounds().size.y;
+            pos.x = s.Get90Bounds().min.x + Random.value * s.Get90Bounds().size.x;
+            pos.y = s.Get90Bounds().min.y + Random.value * s.Get90Bounds().size.y;
             pos.z = 0;
 
             e.transform.localPosition = pos;

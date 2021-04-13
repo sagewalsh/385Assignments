@@ -6,15 +6,21 @@ public class CameraSupport : MonoBehaviour
 {
     private Camera theCamera;
     private Bounds worldBounds;
+    private Bounds bounds90;
     void Start()
     {
         theCamera = gameObject.GetComponent<Camera>();
         worldBounds = new Bounds();
+        bounds90 = new Bounds();
 
         float maxY = theCamera.orthographicSize;
         float maxX = theCamera.orthographicSize * theCamera.aspect;
+
         float sizeY = 2 * maxY;
         float sizeX = 2 * maxX;
+
+        float y90 = sizeY * 9 / 10;
+        float x90 = sizeX * 9 / 10;
 
         Vector3 c = theCamera.transform.position;
         c.z = 0f;
@@ -22,7 +28,11 @@ public class CameraSupport : MonoBehaviour
         worldBounds.center = c;
         worldBounds.size = new Vector3(sizeX, sizeY, 1f);
 
+        bounds90.center = c;
+        bounds90.size = new Vector3(x90, y90, 1f);
+
         Debug.Log("WorldBounds: " + worldBounds);
+        Debug.Log("PlaneBounds: " + bounds90);
     }
 
     // Update is called once per frame
@@ -34,6 +44,11 @@ public class CameraSupport : MonoBehaviour
     public Bounds GetWorldBounds()
     {
         return worldBounds;
+    }
+
+    public Bounds Get90Bounds()
+    {
+        return bounds90;
     }
 
     public bool isInside(Bounds b1)
