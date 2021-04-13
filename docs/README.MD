@@ -1,6 +1,6 @@
 # 385 Assignments
 
-[Web Page](https://sagewalsh.github.io/385Assignments/docs)
+[Web Page](https://sagewalsh.github.io/385Assignments/docs/index.html)
 
 ## Assignment 1: Hero
 
