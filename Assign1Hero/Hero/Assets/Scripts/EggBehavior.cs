@@ -8,12 +8,14 @@ public class EggBehavior : MonoBehaviour
     public const float eggSpeed = 40f;
 
     private GameController gameCon = null;
+    private CameraSupport s = null;
 
 
     // Start is called before the first frame update
     void Start()
     {
         gameCon = FindObjectOfType<GameController>();
+        s = Camera.main.GetComponent<CameraSupport>();
     }
 
     // Update is called once per frame
@@ -23,9 +25,8 @@ public class EggBehavior : MonoBehaviour
         
         // If outside the game window: kill itself
         Vector3 pos = transform.position;
-        CameraSupport s = Camera.main.GetComponent<CameraSupport>();
 
-        if(!s.GetWorldBounds().Contains(pos))
+        if( !s.GetWorldBounds().Contains(pos))
         {
             Destroy(transform.gameObject);
             gameCon.EggDestroyed();
@@ -39,6 +40,8 @@ public class EggBehavior : MonoBehaviour
             PlaneBehavior plane = collision.GetComponent<PlaneBehavior>();
             plane.Hit();
             Destroy(gameObject);
+            gameCon.EggDestroyed();
+            gameCon.EnemyDestroyed();
         }
     }
 }
