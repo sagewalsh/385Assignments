@@ -7,9 +7,14 @@ public class WaypointScript : MonoBehaviour
     // Spawning boundaries
     private Bounds WayBounds;
 
+    // Waypoint's color
+    Color newColor;
+
     // Variables for A Waypoint's health
     private int hitsByEgg = 0;
     private float energy = 1f;
+
+    private bool hide = false;
     
     void Start()
     {
@@ -20,10 +25,25 @@ public class WaypointScript : MonoBehaviour
 
         WayBounds.center = spawnPos;
         WayBounds.size = new Vector3(30f, 30f, 0f);
+
+        newColor = GetComponent<Renderer>().material.color;
     }
 
     void Update()
-    {}
+    {
+        if(Input.GetKeyDown(KeyCode.H))
+        {
+            hide = !hide;
+        }
+        if(hide)
+        {
+            Hide();
+        }
+        else
+        {
+            Show();
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -34,10 +54,6 @@ public class WaypointScript : MonoBehaviour
             // Delete the Egg
             EggBehavior egg = collision.GetComponent<EggBehavior>();
             egg.Destroy();
-        }
-        if(collision.tag == "Player")
-        {
-            Respawn();
         }
     }
 
@@ -59,10 +75,7 @@ public class WaypointScript : MonoBehaviour
 
     private void Respawn()
     {
-        // Make Waypoint transparent
-        Color newColor = GetComponent<Renderer>().material.color;
-        newColor.a = 0f;
-        GetComponent<Renderer>().material.color = newColor;
+        Hide();
 
         // Random Spawn location inside bounds
         Vector3 pos;
@@ -75,17 +88,27 @@ public class WaypointScript : MonoBehaviour
 
         // Reset life span
         hitsByEgg = 0;
-
-        // Make Waypoint visible
         energy = 1f;
+        Show();
+    }
+
+    public void Hide()
+    {
+        // Make Waypoint transparent
+        newColor.a = 0f;
+        GetComponent<Renderer>().material.color = newColor;
+    }
+
+    public void Show()
+    {
+        // Make Waypoint visible
         newColor.a = energy;
         GetComponent<Renderer>().material.color = newColor; 
     }
 
     private void ColorChange()
     {
-        energy *= 0.8f;
-        Color newColor = GetComponent<Renderer>().material.color;
+        energy -= 0.25f;
         newColor.a = energy;
         GetComponent<Renderer>().material.color = newColor;
     }
