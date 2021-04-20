@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AWaypointScript : MonoBehaviour
+public class WaypointScript : MonoBehaviour
 {
     // Spawning boundaries
-    private Bounds ABounds;
+    private Bounds WayBounds;
 
     // Variables for A Waypoint's health
     private int hitsByEgg = 0;
@@ -13,19 +13,13 @@ public class AWaypointScript : MonoBehaviour
     
     void Start()
     {
-
         Vector3 spawnPos = transform.position;
         spawnPos.z = 0f;
 
-        ABounds = new Bounds();
+        WayBounds = new Bounds();
 
-        ABounds.center = spawnPos;
-        ABounds.size = new Vector3(30f, 30f, 0f);
-
-        
-        Color newColor = new Color(0f, 0f, 1f, energy);   
-        GetComponent<Renderer>().material.color = newColor;
-
+        WayBounds.center = spawnPos;
+        WayBounds.size = new Vector3(30f, 30f, 0f);
     }
 
     void Update()
@@ -36,6 +30,10 @@ public class AWaypointScript : MonoBehaviour
         if(collision.tag == "Egg")
         {
             Hit();
+
+            // Delete the Egg
+            EggBehavior egg = collision.GetComponent<EggBehavior>();
+            egg.Destroy();
         }
         if(collision.tag == "Player")
         {
@@ -62,15 +60,17 @@ public class AWaypointScript : MonoBehaviour
     private void Respawn()
     {
         // Make Waypoint transparent
-        Color newColor = new Color (0f, 0f, 1f, 0f);
+        Color newColor = GetComponent<Renderer>().material.color;
+        newColor.a = 0f;
         GetComponent<Renderer>().material.color = newColor;
 
-        // Move Waypoint
+        // Random Spawn location inside bounds
         Vector3 pos;
-        pos.x = ABounds.min.x + Random.value * ABounds.size.x;
-        pos.y = ABounds.min.y + Random.value * ABounds.size.y;
+        pos.x = WayBounds.min.x + Random.value * WayBounds.size.x;
+        pos.y = WayBounds.min.y + Random.value * WayBounds.size.y;
         pos.z = 0;
 
+        // Move Waypoint
         transform.position = pos;
 
         // Reset life span
@@ -78,13 +78,15 @@ public class AWaypointScript : MonoBehaviour
 
         // Make Waypoint visible
         energy = 1f;
-        newColor = new Color(0f, 0f, 1f, energy);   
+        newColor.a = energy;
         GetComponent<Renderer>().material.color = newColor; 
     }
+
     private void ColorChange()
     {
         energy *= 0.8f;
-        Color newColor = new Color(0f, 0f, 1f, energy);
+        Color newColor = GetComponent<Renderer>().material.color;
+        newColor.a = energy;
         GetComponent<Renderer>().material.color = newColor;
     }
 }

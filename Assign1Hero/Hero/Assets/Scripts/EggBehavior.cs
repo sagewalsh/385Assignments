@@ -46,11 +46,16 @@ public class EggBehavior : MonoBehaviour
             PlaneBehavior plane = collision.GetComponent<PlaneBehavior>();
             plane.Hit();
 
-            // Delete the Egg
-            Destroy(gameObject);
-
-            // Update the Controller
-            gameCon.EggDestroyed();
+            Destroy();
         }
+    }
+
+    public void Destroy()
+    {
+        // Delete the Egg
+        Destroy(gameObject);
+
+        // Update the Controller
+        gameCon.EggDestroyed();
     }
 }

@@ -36,9 +36,9 @@ public class PlaneBehavior : MonoBehaviour
 
         Vector3 target = waypoints[currentTarget].transform.position;
 
-        //transform.position = Vector2.MoveTowards(transform.position, target, step);
+        transform.position = Vector2.MoveTowards(transform.position, target, step);
 
-        transform.Translate(-1 * transform.up * speed * Time.smoothDeltaTime);
+        //transform.position = Vector3.MoveTowards(target.x, target.y, 0);
 
         // referenced https://www.codegrepper.com/code-examples/csharp/unity+2d+rotate+towards+direction
         Vector3 targetDirection = target - transform.position;
@@ -65,10 +65,10 @@ public class PlaneBehavior : MonoBehaviour
             while (notChosen)
             {
                 Debug.Log("entered");
-                currentTarget = Random.Range(0, waypoints.Length - 1);
+                currentTarget = Random.Range(0, waypoints.Length);
 
                 // make sure new target is different
-                if (currentTarget != prev || waypoints.Length <= 1)
+                if (currentTarget != prev)
                 {
                     notChosen = false;
                 }
