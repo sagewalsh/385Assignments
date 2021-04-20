@@ -6,6 +6,13 @@ TagManager:
   tags:
   - Plane
   - Egg
+  - Waypoint
+  - A
+  - B
+  - C
+  - D
+  - E
+  - F
   layers:
   - Default
   - TransparentFX
