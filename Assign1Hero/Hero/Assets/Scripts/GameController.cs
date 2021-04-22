@@ -10,12 +10,14 @@ public class GameController : MonoBehaviour
     private int numberOfPlanes = 0;
     private int planesDestroyed = 0;
 
+
     // Variable to track eggs in world
     private int numberOfEggs = 0;
 
     // UI Text Variables
     public Text enemyText = null;
     public Text eggText = null;
+    public Text waypoint = null;
 
     public GameObject[] waypoints;
 
@@ -30,6 +32,8 @@ public class GameController : MonoBehaviour
         s = Camera.main.GetComponent<CameraSupport>();
         enemyText.text = "ENEMY: Count(" + numberOfPlanes +
                          ") Destroyed(" + planesDestroyed + ")";
+
+        waypoint.text = "Waypoints: Sequential";
     }
 
 
@@ -51,12 +55,14 @@ public class GameController : MonoBehaviour
             if (isRandom)
             {
                 Debug.Log("Random is off");
+                waypoint.text = "Waypoints: Sequential";
                 isRandom = false;
             }
 
             else
             {
                 Debug.Log("Random is on");
+                waypoint.text = "Waypoints: Random";
                 isRandom = true;
             }
         }
