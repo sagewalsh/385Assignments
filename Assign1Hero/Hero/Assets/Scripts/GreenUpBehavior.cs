@@ -8,6 +8,7 @@ public class GreenUpBehavior : MonoBehaviour
         // Variables for UI text
         public Text enemyCountText = null;
         public Text heroControl = null;
+        public Text coolText = null;
 
         
         // Variables to control Hero
@@ -38,7 +39,8 @@ public class GreenUpBehavior : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         // Start text
-        enemyCountText.text = "PlanesTouched(0)";
+        enemyCountText.text = "Touched(0)";
+        coolText.text = "Fire Power Ready!";
     }
 
     void Update()
@@ -91,19 +93,27 @@ public class GreenUpBehavior : MonoBehaviour
         }
 
         // Shoot Eggs
-        if(Input.GetKey(KeyCode.Space) && Time.time > nextFire)
+        if(Time.time > nextFire)
         {
-            GameObject e = Instantiate(Resources.Load("Prefabs/Egg") as GameObject);
-            if(e != null)
+            coolText.text = "Fire Power Ready!";
+            if(Input.GetKey(KeyCode.Space))
             {
-                // Shoot eggs: from arrow pos, in arrow direction
-                e.transform.localPosition = transform.localPosition;
-                e.transform.rotation = transform.rotation;
-                gameCon.EggCreated();
-            }
+                GameObject e = Instantiate(Resources.Load("Prefabs/Egg") as GameObject);
+                if(e != null)
+                {
+                    // Shoot eggs: from arrow pos, in arrow direction
+                    e.transform.localPosition = transform.localPosition;
+                    e.transform.rotation = transform.rotation;
+                    gameCon.EggCreated();
+                }
 
-            // Cool down between egg shots
-            nextFire = Time.time + cooldown;
+                // Cool down between egg shots
+                nextFire = Time.time + cooldown;
+            }
+        }
+        else
+        {
+            coolText.text = "Cooldown Fire Power.";
         }
 
         // Update Position and speed
@@ -117,7 +127,7 @@ public class GreenUpBehavior : MonoBehaviour
         if(collision.tag == "Plane")
         {
             planesTouched++;
-            enemyCountText.text = "PlanesTouched(" + planesTouched + ")";
+            enemyCountText.text = "Touched(" + planesTouched + ")";
 
             // Delete Plane
             Destroy(collision.gameObject);

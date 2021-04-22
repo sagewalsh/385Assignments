@@ -10,7 +10,8 @@ public class PlaneBehavior : MonoBehaviour
 
     // Game Controller
     private GameController gameCon = null;
-    private GameObject[] waypoints;
+
+    private GameController gameController;
 
     [SerializeField] public float speed;
 
@@ -22,9 +23,15 @@ public class PlaneBehavior : MonoBehaviour
     {
         gameCon = FindObjectOfType<GameController>();
 
-        waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
 
-        currentTarget = Random.Range(0, waypoints.Length - 1);
+
+        currentTarget = Random.Range(0, gameController.GetComponent<GameController>().waypoints.Length);
+
+        foreach(GameObject w in gameController.GetComponent<GameController>().waypoints)
+        {
+            Debug.Log(w.gameObject.tag);
+        }
     }
 
 
@@ -34,7 +41,7 @@ public class PlaneBehavior : MonoBehaviour
 
         float rotStep = rotateSpeed * Time.deltaTime;
 
-        Vector3 target = waypoints[currentTarget].transform.position;
+        Vector3 target = gameController.GetComponent<GameController>().waypoints[currentTarget].transform.position;
 
         transform.position = Vector2.MoveTowards(transform.position, target, step);
 
@@ -58,25 +65,38 @@ public class PlaneBehavior : MonoBehaviour
     {
         Debug.Log("Testing");
         // find new target waypoint
-        if (collision.tag == "Waypoint")
+        if (collision.tag == "Waypoint" && collision.gameObject.GetInstanceID() == gameController.GetComponent<GameController>().waypoints[currentTarget].GetInstanceID()) //GameObject.ReferenceEquals(collision, gameController.GetComponent<GameController>().waypoints[currentTarget]));
         {
             bool notChosen = true;
             int prev = currentTarget;
-            while (notChosen)
-            {
-                Debug.Log("entered");
-                currentTarget = Random.Range(0, waypoints.Length);
 
-                // make sure new target is different
-                if (currentTarget != prev)
+            // random target
+            if (gameController.isRandom)
+            {
+                while (notChosen)
                 {
-                    notChosen = false;
+                    currentTarget = Random.Range(0, gameController.GetComponent<GameController>().waypoints.Length);
+
+                    // make sure new target is different
+                    if (currentTarget != prev)
+                    {
+                        notChosen = false;
+                    }
                 }
             }
-            
+            else
+            {
+                if (currentTarget == gameController.GetComponent<GameController>().waypoints.Length - 1)
+                {
+                    currentTarget = 0;
+                }
+                else
+                {
+                    currentTarget++;
+                }
+            }
         }
     }
-
 
     public void Hit()
     {

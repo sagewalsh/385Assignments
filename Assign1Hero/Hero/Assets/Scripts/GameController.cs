@@ -17,12 +17,16 @@ public class GameController : MonoBehaviour
     public Text enemyText = null;
     public Text eggText = null;
 
-    CameraSupport s = null;
-    
+    public GameObject[] waypoints;
 
+    CameraSupport s = null;
+
+    public bool isRandom;
 
     void Start()
     {
+        isRandom = false;
+
         s = Camera.main.GetComponent<CameraSupport>();
         enemyText.text = "ENEMY: Count(" + numberOfPlanes +
                          ") Destroyed(" + planesDestroyed + ")";
@@ -40,6 +44,21 @@ public class GameController : MonoBehaviour
 #else
             Application.Quit();
 #endif
+        }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            if (isRandom)
+            {
+                Debug.Log("Random is off");
+                isRandom = false;
+            }
+
+            else
+            {
+                Debug.Log("Random is on");
+                isRandom = true;
+            }
         }
 
         // Create more planes to maintain maxPlanes in the world
