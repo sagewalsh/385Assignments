@@ -23,7 +23,7 @@ Keyboard Control:
 
 Hero Rotation:
 * A rotates the hero counter-clockwise
-* D rotates the her clockwise
+* D rotates the hero clockwise
 
 Rotation Speed: 45 degrees/second
 
