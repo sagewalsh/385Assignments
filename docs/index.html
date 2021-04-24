@@ -16,7 +16,6 @@
 <dt>Keyboard Control:</dt>
 <li>W gradually increases the Hero's speed</li>
 <li>S gradually decreases the Hero's speed</li>
-<dt>Hero Rotation:</dt>
 <li>A rotates the hero counter-clockwise</li>
 <li>D rotates the hero clockwise</li>
 <p>Rotation Speed: 45 degrees/second</p>
@@ -54,12 +53,91 @@
     <dd><li>Total current enemy count</li></dd>
     <dd><li>Total number destroyed</li></dd>
 
-<li>Q-ky:</li>
+<li>Q-key:</li>
     <dd><li>Quits the application</li></dd>
 
 
 <h2>Assignment 2: Hero Next Generation</h2>
+<p>Created by Sage Walsh and Connor Goodman</p>
 <li>
     <a href = "https://sagewalsh.github.io/385Assignments/NextGenBuild"> Hero Next Generation WebGL</a>
 </li>
+<h3>World Camera Settings</h3>
+<p>Height of 100</p>
+
+<h3>Hero</h3>
+<p>Size: 5x5</p>
+<p>Control: Follows the mouse, or controlled by keyboard controls (M toggles between the two)</p>
+<dt>Keyboard Control:</dt>
+<li>W gradually increases the Hero's speed</li>
+<li>S gradually decreases the Hero's speed</li>
+<li>A rotates the hero counter-clockwise</li>
+<li>D rotates the hero clockwise</li>
+<p>Rotation Speed: 45 degrees/second</p>
+<p>Initial Speed: 20 unites/second</p>
+<p>Space-Bar: Spawns an egg-projectile at a rate of one egg every second</p>
+
+<h3>Spawned Egg</h3>
+<p>Size: 1x1</p>
+<p>Direction: Aligned with Hero direction at time of launch</p>
+<p>Speed: 40 units/second</p>
+<dt>Expiration:</dt>
+<li>Passes the Bounds of the World</li>
+<li>At Collision with Enemy</li>
+<li>At Collision with Waypoint</li>
+
+<h3>Enemy</h3>
+<p>Size: 5x5</p>
+<p>Number of Enemies: 10</p>
+<p>Location: Randomly spawned within 90% of the world boundaries</p>
+<dt>Expiration:</dt>
+<li>At Collision with Hero</li>
+<li>At 4th Collision with an Egg</li>
+<li>Each egg costs 20% of Enemy's Current Energy</li>
+<p>Spawning: A new enemy is spawned so that the number and location conditions are always met</p>
+<dt>Movement:</dt>
+<ul>
+    <li>Speed: 30 units/second</li>
+    <li>Travels between waypoints</li>
+    <ul>
+        <li>Sequentially</li>
+        <li>Randomly</li>
+        <p>(J-key Toggles between the two)</p>
+    </ul>
+    <li>When waypoint is respawned: plane adjusts it's route</li>
+</ul>
+
+
+<h3>Waypoint</h3>
+<p>Size: 5x5</p>
+<p>Number of Waypoints: 6</p>
+<p>Waypoint Labels: A - F</p>
+<dt>Expiration</dt>
+<li>At 4th Collision with Egg</li>
+<li>Each egg costs 25% of health</li>
+<p>Spawning: Each waypoint has a 30x30 spawning region surrounding their initial location</p>
+<p>H: hides the waypoints</p>
+
+<h3>Application Status</h3>
+<dt>The application prints out the following:</dt>
+<li>Hero:</li>
+    <dd><li>Control mode: mouse / keyboard</li></dd>
+    <dd><li>Number of times the hero touched the enemy</li></dd>
+
+<li>Egg:</li>
+    <dd><li>Number of eggs currently in the world</li></dd>
+    <dd><li>Cooldown / Fire Ready</li></dd>
+
+<li>Enemy:</li>
+    <dd><li>Total current enemy count</li></dd>
+    <dd><li>Total number destroyed</li></dd>
+
+<li>Q-key:</li>
+    <dd><li>Quits the application</li></dd>
+<li>H-key:</li>
+    <dd><li>Hides the Waypoints</li></dd>
+<li>J-key</li>
+    <dd><li>Moves planes randomly or sequentially</li></dd>
+
+
 </o1>
