@@ -9,7 +9,6 @@ public class GreenUpBehavior : MonoBehaviour
         public Text enemyCountText = null;
         public Text heroControl = null;
         public Text coolText = null;
-        public Text waypoint = null;
 
         
         // Variables to control Hero
