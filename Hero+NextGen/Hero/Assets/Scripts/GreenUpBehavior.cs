@@ -28,6 +28,9 @@ public class GreenUpBehavior : MonoBehaviour
 
         private GameController gameCon = null;
 
+        // Hero's Follow Camera
+        public HeroCamBehavior heroCam;
+
 
 
     void Start()
@@ -101,6 +104,9 @@ public class GreenUpBehavior : MonoBehaviour
                 GameObject e = Instantiate(Resources.Load("Prefabs/Egg") as GameObject);
                 if(e != null)
                 {
+                    // Camera Shake
+                    heroCam.CallShake();
+
                     // Shoot eggs: from arrow pos, in arrow direction
                     e.transform.localPosition = transform.localPosition;
                     e.transform.rotation = transform.rotation;
@@ -129,9 +135,19 @@ public class GreenUpBehavior : MonoBehaviour
             planesTouched++;
             enemyCountText.text = "Touched(" + planesTouched + ")";
 
-            // Delete Plane
-            Destroy(collision.gameObject);
-            gameCon.EnemyDestroyed();
+            // Delete Plane only if in chase state
+            if (collision.GetComponent<PlaneBehavior>().mState == PlaneBehavior.EnemyState.eChaseState)
+            {
+                Destroy(collision.gameObject);
+                gameCon.EnemyDestroyed();
+            }
+
+            else if (collision.GetComponent<PlaneBehavior>().mState == PlaneBehavior.EnemyState.ePatrolState)
+            {
+                collision.GetComponent<PlaneBehavior>().mState = PlaneBehavior.EnemyState.eCCWState;
+            }
+            
+            
         }
     }
 }

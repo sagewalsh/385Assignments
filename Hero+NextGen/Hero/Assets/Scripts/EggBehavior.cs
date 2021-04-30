@@ -44,8 +44,21 @@ public class EggBehavior : MonoBehaviour
         {
             // Get Plane Script
             PlaneBehavior plane = collision.GetComponent<PlaneBehavior>();
-            plane.Hit();
+            //plane.Hit();
 
+            if (plane.mState == PlaneBehavior.EnemyState.eStunnedState)
+            {
+                plane.mState = PlaneBehavior.EnemyState.eEggState;
+            }
+            else if (plane.mState == PlaneBehavior.EnemyState.eEggState)
+            {
+                plane.Hit();
+            }
+            else
+            {
+                plane.mState = PlaneBehavior.EnemyState.eStunnedState;
+            }
+            
             Destroy();
         }
     }
