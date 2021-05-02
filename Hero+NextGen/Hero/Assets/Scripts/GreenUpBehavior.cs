@@ -105,7 +105,7 @@ public class GreenUpBehavior : MonoBehaviour
                 if(e != null)
                 {
                     // Camera Shake
-                    heroCam.CallShake();
+                    heroCam.ShakeCamera(1.0f, 1.0f);
 
                     // Shoot eggs: from arrow pos, in arrow direction
                     e.transform.localPosition = transform.localPosition;

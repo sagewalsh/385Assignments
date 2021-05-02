@@ -4,9 +4,26 @@ using UnityEngine;
 
 public class HeroCamBehavior : MonoBehaviour
 {
+//-----------------------------------------------------------------------------------------------------------------
+// Code referenced from: http://wiki.unity3d.com/index.php/Camera_Shake 
+// Unify Community Wikipedia Page: Camera Shake
+    public float shakeAmount;//The amount to shake this frame.
+	public float shakeDuration;//The duration this frame.
+ 
+	//Readonly values...
+	float shakePercentage;//A percentage (0-1) representing the amount of shake to be applied when setting rotation.
+	float startAmount;//The initial shake amount (to determine percentage), set when ShakeCamera is called.
+	float startDuration;//The initial shake duration, set when ShakeCamera is called.
+ 
+	bool isRunning = false;	//Is the coroutine running right now?
+ 
+	public bool smooth;//Smooth rotation?
+	public float smoothAmount = 5f;//Amount to smooth
+//-----------------------------------------------------------------------------------------------------------------
+
     public GreenUpBehavior hero = null;
     Vector3 pos;
-    // Start is called before the first frame update
+
     void Start()
     {
         pos = hero.transform.position;
@@ -14,7 +31,6 @@ public class HeroCamBehavior : MonoBehaviour
         transform.position = pos;
     }
 
-    // Update is called once per frame
     void LateUpdate()
     {
         pos = hero.transform.position;
@@ -22,30 +38,41 @@ public class HeroCamBehavior : MonoBehaviour
         transform.position = pos;
     }
 
-    public void CallShake()
-    {
-        StartCoroutine(Shake(1.0f, 0.7f));
-    }
 
-    public IEnumerator Shake(float duration, float magnitude)
-    {
-        Vector3 originalPos = pos;
-
-        float elapsed = 0.0f;
-
-        while (elapsed < duration)
-        {
-            Debug.Log("In the While " + elapsed);
-            float x = Random.Range(-1f, 1f) * magnitude;
-            float y = Random.Range(-1f, 1f) * magnitude;
-
-            transform.position = new Vector3(x, y, originalPos.z);
-
-            elapsed += Time.deltaTime;
-
-            yield return null;
-        }
-
-        transform.position = originalPos;
-    }
+//-----------------------------------------------------------------------------------------------------------------
+// Code referenced from: http://wiki.unity3d.com/index.php/Camera_Shake 
+// Unify Community Wikipedia Page: Camera Shake
+	public void ShakeCamera(float amount, float duration) {
+ 
+		shakeAmount += amount;//Add to the current amount.
+		startAmount = shakeAmount;//Reset the start amount, to determine percentage.
+		shakeDuration += duration;//Add to the current time.
+		startDuration = shakeDuration;//Reset the start time.
+ 
+		if(!isRunning) StartCoroutine (Shake());//Only call the coroutine if it isn't currently running. Otherwise, just set the variables.
+	}
+	IEnumerator Shake() {
+		isRunning = true;
+ 
+		while (shakeDuration > 0.01f) {
+			Vector3 rotationAmount = Random.insideUnitSphere * shakeAmount;//A Vector3 to add to the Local Rotation
+			rotationAmount.z = 0;//Don't change the Z; it looks funny.
+ 
+			shakePercentage = shakeDuration / startDuration;//Used to set the amount of shake (% * startAmount).
+ 
+			shakeAmount = startAmount * shakePercentage;//Set the amount of shake (% * startAmount).
+			shakeDuration = Mathf.Lerp(shakeDuration, 0, Time.deltaTime);//Lerp the time, so it is less and tapers off towards the end.
+ 
+ 
+			if(smooth)
+				transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(rotationAmount), Time.deltaTime * smoothAmount);
+			else
+				transform.localRotation = Quaternion.Euler (rotationAmount);//Set the local rotation the be the rotation amount.
+ 
+			yield return null;
+		}
+		transform.localRotation = Quaternion.identity;//Set the local rotation to 0 when done, just to get rid of any fudging stuff.
+		isRunning = false;
+	}
+//-----------------------------------------------------------------------------------------------------------------
 }
