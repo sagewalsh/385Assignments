@@ -54,6 +54,7 @@ public class WaypointScript : MonoBehaviour
             // Delete the Egg
             EggBehavior egg = collision.GetComponent<EggBehavior>();
             egg.Destroy();
+
         }
     }
 
