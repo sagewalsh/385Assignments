@@ -5,10 +5,18 @@ using UnityEngine;
 public class WayPointCamera : MonoBehaviour
 {
     public bool wayPointCameraOn = false;
-    
-    void Awake()
+    public Transform target;
+
+    void update()
     {
-        Debug.Log("Entered Camera ");
+        if (wayPointCameraOn)
+        {
+            transform.position = target.position;
+        }
     }
 
+    public void wayPointCamera(bool onOff)
+    {
+        wayPointCameraOn = onOff;
+    }
 }

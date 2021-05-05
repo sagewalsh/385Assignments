@@ -16,13 +16,12 @@ public class HeroCamBehavior : MonoBehaviour
 	float startDuration;//The initial shake duration, set when ShakeCamera is called.
  
 	bool isRunning = false;	//Is the coroutine running right now?
- 
-	public bool smooth;//Smooth rotation?
-	public float smoothAmount = 5f;//Amount to smooth
 //-----------------------------------------------------------------------------------------------------------------
 
-    public GreenUpBehavior hero = null;
+    public Transform hero = null;
     Vector3 pos;
+    Vector3 heroPos;
+    private bool followMouse = true;
 
     void Start()
     {
@@ -33,9 +32,25 @@ public class HeroCamBehavior : MonoBehaviour
 
     void LateUpdate()
     {
-        pos = hero.transform.position;
-        pos.z = -10;
-        transform.position = pos;
+        // Toggle between mouse and keyboard controls
+        if(Input.GetKeyDown(KeyCode.M))
+        {
+            followMouse = !followMouse;
+        }
+
+        heroPos = hero.transform.position;
+        heroPos.z = -10;
+        
+        if(followMouse)
+        {
+            // Duration: 0.5s / TimeLerp Rate: 8
+            transform.position = Vector3.Lerp(pos, heroPos, 0.5f/8.0F);
+        }
+        else
+        {
+            transform.position = heroPos;
+        }
+        pos = transform.position;
     }
 
 
@@ -62,12 +77,8 @@ public class HeroCamBehavior : MonoBehaviour
  
 			shakeAmount = startAmount * shakePercentage;//Set the amount of shake (% * startAmount).
 			shakeDuration = Mathf.Lerp(shakeDuration, 0, Time.deltaTime);//Lerp the time, so it is less and tapers off towards the end.
- 
- 
-			if(smooth)
-				transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(rotationAmount), Time.deltaTime * smoothAmount);
-			else
-				transform.localRotation = Quaternion.Euler (rotationAmount);//Set the local rotation the be the rotation amount.
+
+            transform.localRotation = Quaternion.Euler (rotationAmount);//Set the local rotation the be the rotation amount.
  
 			yield return null;
 		}

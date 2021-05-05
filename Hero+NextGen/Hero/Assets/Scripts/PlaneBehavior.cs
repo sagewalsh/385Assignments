@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlaneBehavior : MonoBehaviour
 {
+    // Lerp Stuff
+    private TimedLerp lerp = new TimedLerp(2f, 2f);
+    private const float kDeltaSize = 8f; // twice current size
+
+
+
     // Variable for the Plane's Health
     private int hitsByEgg = 0;
     private float energy = 1f;
@@ -17,7 +23,7 @@ public class PlaneBehavior : MonoBehaviour
 
     [SerializeField] public float rotateSpeed;
 
-    private const float kScaleRate = 1f / 60f;
+    private const float kScaleRate = 2f / 60f;
 
     private const float kRotateRate = 90f / 60f;
 
@@ -180,13 +186,16 @@ public class PlaneBehavior : MonoBehaviour
 
     private void ServicePatrolState()
     {
-        float step = speed * Time.deltaTime;
 
-        float rotStep = rotateSpeed * Time.deltaTime;
+        //float step = speed * Time.deltaTime;
+
+        //float rotStep = rotateSpeed * Time.deltaTime;
 
         Vector3 target = gameController.GetComponent<GameController>().waypoints[currentTarget].transform.position;
 
-        transform.position = Vector2.MoveTowards(transform.position, target, step);
+        //transform.position = Vector2.MoveTowards(transform.position, target, step);
+
+        transform.position += (speed * Time.smoothDeltaTime) * transform.up;
 
         //transform.position = Vector3.MoveTowards(target.x, target.y, 0);
 
@@ -200,7 +209,11 @@ public class PlaneBehavior : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
 
         //Roatate current game object to face the target using a slerp function which adds some smoothing to the move
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotateSpeed * Time.deltaTime);
+        //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotateSpeed * Time.deltaTime);
+
+        PointAtPosition(target, rotateSpeed);
+
+        checkWaypointDist();
     }
 
     private void ServiceChaseState()
@@ -231,8 +244,11 @@ public class PlaneBehavior : MonoBehaviour
                 //set the angle into a quaternion + sprite offset depending on initial sprite facing direction
                 Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
 
+                Debug.Log("Chasing");
                 //Roatate current game object to face the target using a slerp function which adds some smoothing to the move
-                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotateSpeed * Time.deltaTime);
+                //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotateSpeed * Time.deltaTime);
+
+                PointAtPosition(target, 100);
             }
         }
 
@@ -287,13 +303,56 @@ public class PlaneBehavior : MonoBehaviour
     void FixedUpdate()
     {
         UpdateFSM();
+
+        if (lerp.LerpIsActive())
+        {
+            //Debug.Log("Lerp!");
+            Vector3 s = lerp.UpdateLerp();
+            transform.position = s;
+            // move
+        }
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    //void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    // find new target waypoint
+    //    if (collision.tag == "Waypoint" && collision.gameObject.GetInstanceID() == gameController.GetComponent<GameController>().waypoints[currentTarget].GetInstanceID()){
+    //        bool notChosen = true;
+    //        int prev = currentTarget;
+
+    //        // random target
+    //        if (gameController.isRandom)
+    //        {
+    //            while (notChosen)
+    //            {
+    //                currentTarget = Random.Range(0, gameController.GetComponent<GameController>().waypoints.Length);
+
+    //                // make sure new target is different
+    //                if (currentTarget != prev)
+    //                {
+    //                    notChosen = false;
+    //                }
+    //            }
+    //        }
+    //        else
+    //        {
+    //            if (currentTarget == gameController.GetComponent<GameController>().waypoints.Length - 1)
+    //            {
+    //                currentTarget = 0;
+    //            }
+    //            else
+    //            {
+    //                currentTarget++;
+    //            }
+    //        }
+    //    }
+    //}
+
+    private void checkWaypointDist()
     {
-        Debug.Log("Testing");
-        // find new target waypoint
-        if (collision.tag == "Waypoint" && collision.gameObject.GetInstanceID() == gameController.GetComponent<GameController>().waypoints[currentTarget].GetInstanceID()){
+        float dist = Vector2.Distance(transform.position, gameController.GetComponent<GameController>().waypoints[currentTarget].transform.position);
+        if (dist <= 25)
+        {
             bool notChosen = true;
             int prev = currentTarget;
 
@@ -350,4 +409,21 @@ public class PlaneBehavior : MonoBehaviour
         Color newColor = new Color(1f, 0f, 0f, energy);
         GetComponent<Renderer>().material.color = newColor;
     }
+
+    public void StartLerp(float lerpMultiplier, Vector3 dir)
+    {
+        Vector3 currentLocation = transform.position;
+        Vector2 finalLocation = (currentLocation + dir.normalized * 4 * lerpMultiplier);
+        Debug.Log("Starting lerp from " + transform.position + " to " + finalLocation);
+        lerp.SetLerpParms(lerpMultiplier, lerpMultiplier);
+        lerp.BeginLerp(currentLocation, finalLocation);
+    }
+
+    private void PointAtPosition(Vector3 p, float r)
+    {
+        Vector3 v = p - transform.position;
+        transform.up = Vector3.LerpUnclamped(transform.up, v, r);
+    }
 }
+
+

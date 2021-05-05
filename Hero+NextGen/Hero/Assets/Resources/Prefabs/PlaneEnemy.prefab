@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  rotateSpeed: 20
+  rotateSpeed: 0.0005
   egg: {fileID: 21300000, guid: 176e2779e522e4c4f915805b1d21da66, type: 3}
   stunned: {fileID: 21300000, guid: 6fa7fe67e43901a4e8379ddea3456a0b, type: 3}
   mState: 2

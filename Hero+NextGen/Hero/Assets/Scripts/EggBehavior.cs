@@ -49,14 +49,17 @@ public class EggBehavior : MonoBehaviour
             if (plane.mState == PlaneBehavior.EnemyState.eStunnedState)
             {
                 plane.mState = PlaneBehavior.EnemyState.eEggState;
+                plane.StartLerp(2, transform.up);
             }
             else if (plane.mState == PlaneBehavior.EnemyState.eEggState)
             {
                 plane.Hit();
+                
             }
             else
             {
                 plane.mState = PlaneBehavior.EnemyState.eStunnedState;
+                plane.StartLerp(1, transform.up);
             }
             
             Destroy();

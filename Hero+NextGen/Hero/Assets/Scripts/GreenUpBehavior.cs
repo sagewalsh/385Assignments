@@ -138,16 +138,14 @@ public class GreenUpBehavior : MonoBehaviour
             // Delete Plane only if in chase state
             if (collision.GetComponent<PlaneBehavior>().mState == PlaneBehavior.EnemyState.eChaseState)
             {
+                gameCon.heroHit++;
                 Destroy(collision.gameObject);
-                gameCon.EnemyDestroyed();
             }
 
             else if (collision.GetComponent<PlaneBehavior>().mState == PlaneBehavior.EnemyState.ePatrolState)
             {
                 collision.GetComponent<PlaneBehavior>().mState = PlaneBehavior.EnemyState.eCCWState;
             }
-            
-            
         }
     }
 }

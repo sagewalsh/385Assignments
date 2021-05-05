@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WaypointScript : MonoBehaviour
 {
+    WayPointCamera wayPointCamera;
     // Spawning boundaries
     private Bounds WayBounds;
 
@@ -49,8 +50,12 @@ public class WaypointScript : MonoBehaviour
     {
         if(collision.tag == "Egg")
         {
+            
             Hit();
-
+            if (GetComponent<WayPointCamera>())
+            {
+                wayPointCamera.wayPointCamera(true);
+            }
             // Delete the Egg
             EggBehavior egg = collision.GetComponent<EggBehavior>();
             egg.Destroy();
@@ -58,6 +63,11 @@ public class WaypointScript : MonoBehaviour
         }
     }
 
+
+    //private void changeCamera()
+    //{
+    //    this.GetComponent<WayPointCamera>().wayPointCamera();
+    //}
     public void Hit()
     {
         // Increases hit count by 1

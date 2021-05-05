@@ -1805,7 +1805,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74df633939448364c962908a29a5210f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hero: {fileID: 238568968}
+  shakeAmount: 0
+  shakeDuration: 0
+  hero: {fileID: 238568970}
 --- !u!81 &1887202154
 AudioListener:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     private int maxPlanes = 10;
     private int numberOfPlanes = 0;
     private int planesDestroyed = 0;
+    public int heroHit = 0;
 
 
     // Variable to track eggs in world
@@ -18,6 +19,7 @@ public class GameController : MonoBehaviour
     public Text enemyText = null;
     public Text eggText = null;
     public Text waypoint = null;
+    public Text heroHits = null;
 
     public GameObject[] waypoints;
 
@@ -34,6 +36,8 @@ public class GameController : MonoBehaviour
                          ") Destroyed(" + planesDestroyed + ")";
 
         waypoint.text = "Waypoints: Sequential";
+
+        heroHits.text = "HERO: Hit(" + heroHit + ")";
     }
 
 
@@ -88,6 +92,8 @@ public class GameController : MonoBehaviour
                          ") Destroyed(" + planesDestroyed + ")";
 
         eggText.text = "EGG: OnScreen(" + numberOfEggs + ")";
+
+        heroHits.text = "HERO: Hit(" + heroHit + ")";
     }
 
     // Update plane tracking variables
