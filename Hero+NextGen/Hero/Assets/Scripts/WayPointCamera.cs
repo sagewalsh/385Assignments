@@ -4,19 +4,31 @@ using UnityEngine;
 
 public class WayPointCamera : MonoBehaviour
 {
-    public bool wayPointCameraOn = false;
-    public Transform target;
+    private bool wayPointCameraOn = false;
+    private GameObject currentWayPoint = null;
+    private Transform target = null;
 
-    void update()
+    void Start()
     {
+        //GameObject.Find("WayPointCamera").camera.enabled = false;
+    }
+
+    void Update()
+    {
+        //Debug.Log("Update way point camera on");
         if (wayPointCameraOn)
         {
-            transform.position = target.position;
+            //GameObject.Find("WayPointCamera").camera.enabled = true;
+            Debug.Log("Enter if way point camera on");
+            transform.position = new Vector3(target.position.x, target.position.y, transform.position.z);
         }
     }
 
-    public void wayPointCamera(bool onOff)
+    public void wayPointCamera(bool onOff, GameObject gObject)
     {
+        currentWayPoint = gObject;
+        target = gObject.transform;
         wayPointCameraOn = onOff;
     }
+
 }

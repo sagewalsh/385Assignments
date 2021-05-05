@@ -432,6 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f3264fb1302cb479b88bce405a1713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wayPointCamera: {fileID: 0}
 --- !u!212 &347165315
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -576,6 +577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f3264fb1302cb479b88bce405a1713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wayPointCamera: {fileID: 0}
 --- !u!212 &363928607
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1186,6 +1188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f3264fb1302cb479b88bce405a1713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wayPointCamera: {fileID: 0}
 --- !u!212 &1075960700
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1475,6 +1478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f3264fb1302cb479b88bce405a1713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wayPointCamera: {fileID: 0}
 --- !u!212 &1562416727
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1709,6 +1713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f3264fb1302cb479b88bce405a1713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wayPointCamera: {fileID: 0}
 --- !u!212 &1707031768
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1952,6 +1957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f3264fb1302cb479b88bce405a1713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wayPointCamera: {fileID: 0}
 --- !u!212 &2003646720
 SpriteRenderer:
   m_ObjectHideFlags: 0

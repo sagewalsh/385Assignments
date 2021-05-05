@@ -6,7 +6,7 @@ public class CameraSupport : MonoBehaviour
 {
     // Game Camera
     private Camera theCamera;
-
+    private GameObject currentWayPoint = null;
 
     // World boundaries
     private Bounds worldBounds;
@@ -72,4 +72,5 @@ public class CameraSupport : MonoBehaviour
         return (b1.min.x < b2.min.x) && (b1.max.x > b2.max.x) &&
                (b1.min.y < b2.min.y) && (b1.max.y > b2.max.y);
     }
+
 }

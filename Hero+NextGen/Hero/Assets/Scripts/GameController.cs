@@ -58,14 +58,14 @@ public class GameController : MonoBehaviour
         {
             if (isRandom)
             {
-                Debug.Log("Random is off");
+                //Debug.Log("Random is off");
                 waypoint.text = "Waypoints: Sequential";
                 isRandom = false;
             }
 
             else
             {
-                Debug.Log("Random is on");
+                //Debug.Log("Random is on");
                 waypoint.text = "Waypoints: Random";
                 isRandom = true;
             }
