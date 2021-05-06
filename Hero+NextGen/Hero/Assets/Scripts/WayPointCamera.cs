@@ -1,34 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WayPointCamera : MonoBehaviour
 {
-    private bool wayPointCameraOn = false;
-    private GameObject currentWayPoint = null;
-    private Transform target = null;
+    public bool wayPointCameraOn = false;
+    
+    public Text wayCamText = null;
 
     void Start()
     {
-        //GameObject.Find("WayPointCamera").camera.enabled = false;
+        transform.position = new Vector3(0,0,0);
     }
 
     void Update()
     {
-        //Debug.Log("Update way point camera on");
-        if (wayPointCameraOn)
+        if(wayPointCameraOn)
         {
-            //GameObject.Find("WayPointCamera").camera.enabled = true;
-            Debug.Log("Enter if way point camera on");
-            transform.position = new Vector3(target.position.x, target.position.y, transform.position.z);
+            wayCamText.text = "WayPoint Cam: Active";
+        }
+        else
+        {
+            wayCamText.text = "WayPoint Cam: Shut Off";
         }
     }
 
-    public void wayPointCamera(bool onOff, GameObject gObject)
+    public void cameraOn(Transform way)
     {
-        currentWayPoint = gObject;
-        target = gObject.transform;
-        wayPointCameraOn = onOff;
+        Vector3 pos = way.position;
+        pos.z = -10;
+        transform.position = pos;
+        wayPointCameraOn = true;
+    }
+
+    public void cameraOff()
+    {
+        transform.position = new Vector3(0,0,0);
+        wayPointCameraOn = false;
     }
 
 }

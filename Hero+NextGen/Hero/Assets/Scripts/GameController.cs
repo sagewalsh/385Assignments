@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour
 {
     // Variables to track planes in world
     private int maxPlanes = 10;
-    private int numberOfPlanes = 0;
+    public int numberOfPlanes = 0;
     private int planesDestroyed = 0;
     public int heroHit = 0;
 
@@ -20,6 +20,8 @@ public class GameController : MonoBehaviour
     public Text eggText = null;
     public Text waypoint = null;
     public Text heroHits = null;
+    
+    
 
     public GameObject[] waypoints;
 

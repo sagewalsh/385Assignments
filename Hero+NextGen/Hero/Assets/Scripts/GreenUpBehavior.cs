@@ -139,6 +139,7 @@ public class GreenUpBehavior : MonoBehaviour
             if (collision.GetComponent<PlaneBehavior>().mState == PlaneBehavior.EnemyState.eChaseState)
             {
                 gameCon.heroHit++;
+                gameCon.numberOfPlanes--;
                 Destroy(collision.gameObject);
             }
 
