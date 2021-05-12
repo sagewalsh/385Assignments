@@ -36,4 +36,13 @@ public class GravityPoint : MonoBehaviour
             obj.transform.up = Vector3.MoveTowards(obj.transform.up, -dir, gravityScale * Time.deltaTime + 90f);
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+
+        Gizmos.DrawWireSphere(transform.position, gravityMinRange + planetRadius);
+
+        Gizmos.DrawWireSphere(transform.position, gravityMaxRange + planetRadius);
+    }
 }

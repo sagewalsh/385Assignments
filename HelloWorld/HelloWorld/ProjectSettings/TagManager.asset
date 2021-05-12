@@ -20,6 +20,7 @@ TagManager:
   - 
   - 
   - 
+  - Planet
   - 
   - 
   - 
@@ -27,8 +28,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Stars
   - 
   - 
   - 
@@ -41,4 +41,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Stars
+    uniqueID: 3286255669
+    locked: 0
+  - name: Planet
+    uniqueID: 2953033731
     locked: 0

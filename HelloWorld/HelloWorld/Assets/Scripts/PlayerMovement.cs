@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     private float horizontal;
     public SpriteRenderer render;
     public Sprite left, right;
+    [SerializeField] int MaxJumps;
+    private int currJumps;
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -21,9 +23,10 @@ public class PlayerMovement : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal"); 
 
         //Space bar on keyboard
-        if(Input.GetButtonDown("Jump"))
+        if(Input.GetButtonDown("Jump") && currJumps < MaxJumps)
         {
             body.AddForce(transform.up * jumpPower, ForceMode2D.Impulse);
+            currJumps++;
         }  
     }
 
@@ -64,6 +67,16 @@ public class PlayerMovement : MonoBehaviour
             body.drag = 0.2f;
             
             body.gravityScale = 2;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D obj)
+    {
+        if (obj.collider.CompareTag("Planet"))
+        {
+            Debug.Log("Hit Planet");
+
+            currJumps = 0;
         }
     }
 }
