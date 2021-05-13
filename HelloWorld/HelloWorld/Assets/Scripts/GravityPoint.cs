@@ -25,7 +25,7 @@ public class GravityPoint : MonoBehaviour
             float min = planetRadius + gravityMinRange;
 
             //Reduce gravity of outer circle atmosphere
-            gravitationalPower = (((min + gravityMinRange) - dist) / gravityMaxRange) * gravitationalPower;
+            gravitationalPower = (((min + gravityMaxRange) - dist) / gravityMaxRange) * gravitationalPower;
         } 
 
         Vector3 dir = (transform.position - obj.transform.position) * gravityScale;

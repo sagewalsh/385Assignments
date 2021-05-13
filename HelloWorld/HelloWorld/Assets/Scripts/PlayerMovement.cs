@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal"); 
 
         //Space bar on keyboard
+        //Forgot to add the "isGrounded" part that the video says
+        //Would that mess up the double jump?
         if(Input.GetButtonDown("Jump") && currJumps < MaxJumps)
         {
             body.AddForce(transform.up * jumpPower, ForceMode2D.Impulse);
