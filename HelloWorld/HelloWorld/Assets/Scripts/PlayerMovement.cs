@@ -115,7 +115,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
     //TODO: likely not needed
-    //VERY MUCH NEEDED IF WE ARE INCLUDING THE SUN!!
     //private void OnTriggerExit2D(Collider2D obj)
     //{
     //    //If you're falling of a planet
