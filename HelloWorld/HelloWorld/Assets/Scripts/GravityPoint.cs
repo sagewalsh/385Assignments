@@ -19,19 +19,33 @@ public class GravityPoint : MonoBehaviour
 
     private void Start()
     {
+        //Caches the gravitys position
         thisTransform = this.transform;
+
+        //Gets the gravitys circle collider
         col = GetComponent<CircleCollider2D>();
+
+        //Calculates the coliders Radius based on the planets size
         float colRadius = (gravityMaxRange + planetRadius) / thisTransform.parent.localScale.x;
+
+        //Sets the radius of the Collider
         col.radius = colRadius;
 
-        //apply gravity fuzzing
+        //Just prevents the player from getting caught in limbo between two planets. Makes one force a little bit stronger or weaker 
+        //so the player continues flying to the next planet
         gravityScale *= 1f + Utilities.PossibleNegative() * Random.Range(minGravityScaleFuzz, maxGravityScaleFuzz);
     }
 
     private void OnTriggerStay2D(Collider2D col)
     {
+        //Sets the gravitational power set by the global variable
         float gravitationalPower = gravityScale;
+        
+        //Calculates distance between the gavity point position and the colliders position
         float dist = Vector2.Distance(col.transform.position, thisTransform.position);
+        
+        //Calculates where the maximum amount of gravity being applied ends. Basically where gravity starts to fall off as you
+        //get away from the planet
         float min = planetRadius + gravityMinRange;
 
         if (dist > min)
@@ -41,11 +55,13 @@ public class GravityPoint : MonoBehaviour
         } 
 
         Vector3 dir = (thisTransform.position - col.transform.position) * gravitationalPower;
+        
         //if collider that enters is a player, track and apply this force
         if(col.CompareTag("Player"))
         {
             col.GetComponent<PlayerMovement>().ApplyPlanetForce(this, dir);
         }
+        
         //otherwise, non-player objects should just get some force applied
         else
         {
