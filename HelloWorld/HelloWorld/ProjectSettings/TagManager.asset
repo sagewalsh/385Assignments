@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Planet
   - Gravity
+  - Ammo
   layers:
   - Default
   - TransparentFX
@@ -48,4 +49,7 @@ TagManager:
     locked: 0
   - name: Planet
     uniqueID: 2953033731
+    locked: 0
+  - name: Pickup
+    uniqueID: 3935511037
     locked: 0

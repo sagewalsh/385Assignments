@@ -846,7 +846,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3129134587947227656, guid: f0ae707ae924bd449906624d3baa21b7, type: 3}
       propertyPath: m_RootOrder
-      value: 24
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 3129134587947227656, guid: f0ae707ae924bd449906624d3baa21b7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2925,7 +2925,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 538041988744210951, guid: 5da41136f04f42e4088513947c748b2d, type: 3}
       propertyPath: m_RootOrder
-      value: 23
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 538041988744210951, guid: 5da41136f04f42e4088513947c748b2d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2974,6 +2974,10 @@ PrefabInstance:
     - target: {fileID: 538041990611185574, guid: 5da41136f04f42e4088513947c748b2d, type: 3}
       propertyPath: gravityScale
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 538041990611185574, guid: 5da41136f04f42e4088513947c748b2d, type: 3}
+      propertyPath: gravityMaxRange
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5da41136f04f42e4088513947c748b2d, type: 3}
@@ -5246,7 +5250,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3048426984756881621, guid: c04cf527f3f91b24c9a6cbce05f1d230, type: 3}
       propertyPath: m_RootOrder
-      value: 25
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 3048426984756881621, guid: c04cf527f3f91b24c9a6cbce05f1d230, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5649,6 +5653,10 @@ PrefabInstance:
     - target: {fileID: 5541062082838396430, guid: 50921d1052be3b649b727575fbc0805d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5541062082838396434, guid: 50921d1052be3b649b727575fbc0805d, type: 3}
+      propertyPath: maxOxygenSeconds
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5541062082838396435, guid: 50921d1052be3b649b727575fbc0805d, type: 3}
       propertyPath: m_Name

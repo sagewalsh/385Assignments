@@ -20,6 +20,13 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D body;
     private Vector3 jumpDir;
 
+    [SerializeField] private float secondsCount;
+    bool inPlanetGrav;
+
+    public float maxOxygenSeconds;
+
+    public OxygenBar bar;
+
     private Dictionary<GravityPoint, Vector3> trackedForces;
 
     private void Start()
@@ -40,6 +47,10 @@ public class PlayerMovement : MonoBehaviour
         //you jump in the middle and three gravities are pulling on the player. This allows the player to always be rotating to the larger force
         --------------------------------------------------------------------------------------------------------------------------------------*/
         trackedForces = new Dictionary<GravityPoint, Vector3>();
+
+        inPlanetGrav = true;
+        secondsCount = 0;
+        bar.SetMaxOxygen(maxOxygenSeconds);
     }
 
     private void Update()
@@ -53,7 +64,12 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetButtonDown("Jump") && currJumps < MaxJumps)
         {
             Jump();
-        }  
+        }
+
+        if (secondsCount > maxOxygenSeconds)
+        {
+            Die();
+        }
     }
 
     private void Jump()
@@ -96,6 +112,22 @@ public class PlayerMovement : MonoBehaviour
         ------------------------------------------------------------------------------------------------*/
         Vector3 up = CalculateUp();
         thisTransform.up = Vector3.MoveTowards(thisTransform.up, -up, upAdjustmentSpeed * up.magnitude);
+
+        // handle the players oxygen
+        if (trackedForces.Count == 0)
+        {
+            inPlanetGrav = false;
+            secondsCount += Time.deltaTime;
+            bar.SetOxygen(maxOxygenSeconds - secondsCount);
+
+        }
+        else if (!inPlanetGrav) { 
+            inPlanetGrav = true;
+            bar.SetOxygen(maxOxygenSeconds);
+            secondsCount = 0; 
+        }
+
+
    }
 
   /*-----------------------------------------------------------------------------------------------
@@ -156,17 +188,17 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    //TODO: likely not needed
-    private void OnTriggerExit2D(Collider2D obj)
-    {
-       //If you're falling of a planet
-       if (obj.CompareTag("Gravity"))
-       {
-           body.drag = 0.2f;
+    ////TODO: likely not needed
+    //private void OnTriggerExit2D(Collider2D obj)
+    //{
+    //   //If you're falling of a planet
+    //   if (obj.CompareTag("Gravity"))
+    //   {
+    //       body.drag = 0.2f;
 
-           body.gravityScale = 1;
-       }
-    }
+    //       body.gravityScale = 1;
+    //   }
+    //}
 
     private void OnCollisionEnter2D(Collision2D obj)
     {
@@ -177,5 +209,10 @@ public class PlayerMovement : MonoBehaviour
             currJumps = 0;
             body.drag = onPlanetDrag;
         }
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
     }
 }
