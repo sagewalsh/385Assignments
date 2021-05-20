@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PossiblePM : MonoBehaviour
 {
-    public float moveSpeed, jumpPower;
+    public float moveSpeed;
     public SpriteRenderer render;
     public Sprite left, right;
     [SerializeField] private int MaxJumps;
@@ -27,8 +27,9 @@ public class PlayerMovement : MonoBehaviour
 
     public OxygenBar bar;
 
-    private Dictionary<GravityPoint, Vector3> trackedForces;
-    public GameConScript controller;
+    private Dictionary<GP, Vector3> trackedForces;
+    public GameObject controller;
+    public GP currentPlanet;
 
     private void Start()
     {
@@ -47,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
         //to then calculate which direction is "UP" for the player. This helps for the scenario if you have three planets close together and 
         //you jump in the middle and three gravities are pulling on the player. This allows the player to always be rotating to the larger force
         --------------------------------------------------------------------------------------------------------------------------------------*/
-        trackedForces = new Dictionary<GravityPoint, Vector3>();
+        trackedForces = new Dictionary<GP, Vector3>();
 
         inPlanetGrav = true;
         secondsCount = 0;
@@ -75,21 +76,32 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        //jump direction is only up when its the first jump.
-        //otherwise we just whatever direction we jumped in before
-        //for any jumps after the first
+        // //jump direction is only up when its the first jump.
+        // //otherwise we just whatever direction we jumped in before
+        // //for any jumps after the first
 
-        if (currJumps == 0)
+        // if (currJumps == 0)
+        // {
+        //     jumpDir = thisTransform.up;
+        // }
+
+        // /*------------------------------------------------------
+        // //Addes Force to the player in the up direction
+        // -------------------------------------------------------*/
+
+        // body.AddForce(jumpDir * jumpPower, ForceMode2D.Impulse);
+        // currJumps++;
+        Transform gravityEdge = currentPlanet.GetComponent<CircleCollider2D>().transform;
+        Vector2 position = thisTransform.position;
+        if(currJumps == 0)
         {
-            jumpDir = thisTransform.up;
+            position = new Vector2(gravityEdge.position.x/2, gravityEdge.position.y/2);
         }
-
-        /*------------------------------------------------------
-        //Addes Force to the player in the up direction
-        -------------------------------------------------------*/
-
-        body.AddForce(jumpDir * jumpPower, ForceMode2D.Impulse);
-        currJumps++;
+        if(currJumps == 1)
+        {
+            position = new Vector2(gravityEdge.position.x, gravityEdge.position.y);
+        }
+        body.MovePosition(position);
     }
 
     private void FixedUpdate()
@@ -135,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
   //track a force from a gravity source, so we can later calculate what the up direction is
   //based on the summation of all the currently applied external forces
   ------------------------------------------------------------------------------------------------*/
-    public void ApplyPlanetForce(GravityPoint gravitySource, Vector3 force)
+    public void ApplyPlanetForce(GP gravitySource, Vector3 force)
     {
         body.AddForce(force);
         trackedForces[gravitySource] = force;
@@ -145,7 +157,7 @@ public class PlayerMovement : MonoBehaviour
     //Removes the weaker force as the player leaves one planet
     ------------------------------------------------------------------------------------------------*/
 
-    public void StopTrackingForce(GravityPoint gravitySource)
+    public void StopTrackingForce(GP gravitySource)
     {
         trackedForces.Remove(gravitySource);
     }
@@ -166,58 +178,37 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D obj)
     {
-        if(obj.CompareTag("Planet") || obj.CompareTag("Finish"))
+        if(obj.CompareTag("Planet"))
         {
             //Just sets the drag on the player
             body.drag = onPlanetDrag;
 
+            currentPlanet = obj.GetComponent<GP>();
+
             //Findes the distance between the planets that the player is jumping between
-            float distance = Mathf.Abs(obj.GetComponent<GravityPoint>().planetRadius - Vector2.Distance(thisTransform.position, obj.transform.position));
+            float distance = Mathf.Abs(currentPlanet.planetRadius - Vector2.Distance(thisTransform.position, obj.transform.position));
             
             
             if(distance < 1f)
             {
-                
                 isGrounded = distance < 0.1f;
             }
         }
-
-        // if(obj.CompareTag("Gravity"))
-        // {
-        //     body.gravityScale = 0;
-        // }
     }
 
 
-    ////TODO: likely not needed
-    //private void OnTriggerExit2D(Collider2D obj)
-    //{
-    //   //If you're falling of a planet
-    //   if (obj.CompareTag("Gravity"))
-    //   {
-    //       body.drag = 0.2f;
-
-    //       body.gravityScale = 1;
-    //   }
-    //}
-
     private void OnCollisionEnter2D(Collision2D obj)
     {
-        if (obj.collider.CompareTag("Planet") || obj.collider.CompareTag("Finish"))
+        if (obj.collider.CompareTag("Planet"))
         {
             currJumps = 0;
             body.drag = onPlanetDrag;
-
-            if(obj.collider.CompareTag("Finish"))
-            {
-                controller.EndGame();
-            }
         }
     }
 
     private void Die()
     {
-        Destroy(gameObject);
-        controller.Restart();
+        // Destroy(gameObject);
+        // controller.GetComponent<GameConScript>().Restart();
     }
 }

@@ -44,10 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c9abad1d3c374547b550ef2285661a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityScale: 10
+  gravityScale: 0.5
+  gravityMinRange: 10
+  gravityMaxRange: 18
   planetRadius: 1.5
-  gravityMinRange: 2.5
-  gravityMaxRange: 7
   minGravityScaleFuzz: 0.01
   maxGravityScaleFuzz: 0.02
 --- !u!58 &3048426982907735413
@@ -139,12 +139,12 @@ SpriteRenderer:
   m_SortingLayerID: -1341933565
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 78682d056e5d5d94680e6ed32b370675, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3c2793eb56f58c34f8b8e2b4909837dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.28, y: 1.28}
+  m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -165,4 +165,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.64
+  m_Radius: 2.53

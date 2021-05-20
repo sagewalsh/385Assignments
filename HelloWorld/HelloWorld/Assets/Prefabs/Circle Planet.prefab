@@ -99,7 +99,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.6
+  m_Radius: 2.53
 --- !u!1 &538041990611185573
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,9 +145,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravityScale: 10
-  planetRadius: 2.5
   gravityMinRange: 2.5
   gravityMaxRange: 7
+  planetRadius: 2.5
   minGravityScaleFuzz: 0.01
   maxGravityScaleFuzz: 0.02
 --- !u!58 &538041990611185575

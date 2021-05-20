@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1270734852635572973}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 24.9, y: 13.1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 6, y: 6, z: 1}
   m_Children:
   - {fileID: 1270734853436178252}
   m_Father: {fileID: 0}
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: -1341933565
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1811e79252bf3064d8220bdca3dcb68e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cb6d1d16d0545ff4b963f360e459191c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -144,10 +144,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c9abad1d3c374547b550ef2285661a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityScale: 5
+  gravityScale: 4
+  gravityMinRange: 14.3
+  gravityMaxRange: 17
   planetRadius: 1.5
-  gravityMinRange: 2.5
-  gravityMaxRange: 7
   minGravityScaleFuzz: 0.01
   maxGravityScaleFuzz: 0.02
 --- !u!58 &1270734853436178255

@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameConScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Text victoryText;
+
     void Start()
     {
-        
+        victoryText.text = "";
     }
 
     void Update()
@@ -29,6 +31,11 @@ public class GameConScript : MonoBehaviour
         {
             Restart();
         }
+    }
+
+    public void EndGame()
+    {
+        victoryText.text = "VICTORY!";
     }
 
     //Call this method to restart whatever scene you are in 

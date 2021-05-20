@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GravityPoint : MonoBehaviour
+public class GP : MonoBehaviour
 {
     public float gravityScale, gravityMinRange, gravityMaxRange, planetRadius;
-    public bool FinalPlanet = false;
     // private float ;
     [SerializeField]
     [Range(0.001f, 0.1f)]
@@ -64,7 +63,7 @@ public class GravityPoint : MonoBehaviour
         //if collider that enters is a player, track and apply this force
         if(col.CompareTag("Player"))
         {
-            col.GetComponent<PlayerMovement>().ApplyPlanetForce(this, dir);
+            col.GetComponent<PossiblePM>().ApplyPlanetForce(this, dir);
         }
         
         //otherwise, non-player objects should just get some force applied
@@ -84,7 +83,7 @@ public class GravityPoint : MonoBehaviour
         //stop tracking this planet once the player leaves it
         if(col.CompareTag("Player"))
         {
-            col.GetComponent<PlayerMovement>().StopTrackingForce(this);
+            col.GetComponent<PossiblePM>().StopTrackingForce(this);
         }
     }
 

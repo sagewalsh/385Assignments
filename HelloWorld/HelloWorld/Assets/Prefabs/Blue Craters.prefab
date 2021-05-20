@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 3129134587947227658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 24.9, y: 13.1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 3129134588219350955}
   m_Father: {fileID: 0}
@@ -99,7 +99,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.5
+  m_Radius: 2.53
 --- !u!1 &3129134588219350954
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,10 +144,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c9abad1d3c374547b550ef2285661a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityScale: 5
-  planetRadius: 1.5
-  gravityMinRange: 2.5
-  gravityMaxRange: 7
+  gravityScale: 8
+  gravityMinRange: 5
+  gravityMaxRange: 8
+  planetRadius: 2.53
   minGravityScaleFuzz: 0.01
   maxGravityScaleFuzz: 0.02
 --- !u!58 &3129134588219350952
