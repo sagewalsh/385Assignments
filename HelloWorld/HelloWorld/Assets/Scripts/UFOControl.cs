@@ -51,7 +51,6 @@ public class UFOControl : MonoBehaviour
         }
     }
 
-
     private void FixedUpdate()
     {
         if (!followOnLookAway && enemyCanSeePlayer)
@@ -85,6 +84,7 @@ public class UFOControl : MonoBehaviour
         }
         playerIsLookingAway = false;
     }
+
     private void PlayerRangePing()
     {
         playerRange = Vector3.Distance(this.transform.position, player.transform.position);
@@ -92,8 +92,4 @@ public class UFOControl : MonoBehaviour
         if (playerRange > lineOfSight) enemyCanSeePlayer = false;
         else enemyCanSeePlayer = true;
     }
-    
-
-
-    
 }

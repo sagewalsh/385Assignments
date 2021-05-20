@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 5138755732394147877}
   - component: {fileID: 5138755732394147882}
   - component: {fileID: 5138755732394147883}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ammo Orb
   m_TagString: Ammo
   m_Icon: {fileID: 0}

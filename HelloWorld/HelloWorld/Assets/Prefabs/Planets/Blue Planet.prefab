@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 2246688997232229855}
   - component: {fileID: 2246688997232229853}
   - component: {fileID: 2246688997232229852}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gravity Field
   m_TagString: Gravity
   m_Icon: {fileID: 0}
@@ -148,6 +148,7 @@ MonoBehaviour:
   gravityMinRange: 7
   gravityMaxRange: 10.5
   planetRadius: 2.53
+  FinalPlanet: 0
   minGravityScaleFuzz: 0.01
   maxGravityScaleFuzz: 0.02
 --- !u!58 &2246688997232229852

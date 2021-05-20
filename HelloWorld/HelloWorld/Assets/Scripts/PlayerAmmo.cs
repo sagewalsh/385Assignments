@@ -35,7 +35,7 @@ public class PlayerAmmo : MonoBehaviour
 
     public bool consumeAmmo(int ammo)
     {
-        if (ammo >= currAmmo)
+        if (ammo <= currAmmo)
         {
             currAmmo -= ammo;
             return true;

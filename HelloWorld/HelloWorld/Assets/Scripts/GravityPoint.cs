@@ -6,7 +6,6 @@ public class GravityPoint : MonoBehaviour
 {
     public float gravityScale, gravityMinRange, gravityMaxRange, planetRadius;
     public bool FinalPlanet = false;
-    // private float ;
     [SerializeField]
     [Range(0.001f, 0.1f)]
     [Tooltip("Min percent of total gravity scale that gravity will fuzz")]
