@@ -67,10 +67,10 @@ public class GravityPoint : MonoBehaviour
         }
         
         //otherwise, non-player objects should just get some force applied
-        else
-        {
-            col.GetComponent<Rigidbody2D>().AddForce(dir);
-        }
+        // else
+        // {
+        //     col.GetComponent<Rigidbody2D>().AddForce(dir);
+        // }
 
         //if (col.CompareTag("Player"))
         //{

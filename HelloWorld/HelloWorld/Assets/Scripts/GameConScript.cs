@@ -10,6 +10,7 @@ public class GameConScript : MonoBehaviour
 
     void Start()
     {
+        // SceneManager.LoadScene("Menu", LoadSceneMode.Single);
         victoryText.text = "";
     }
 

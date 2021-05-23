@@ -19,5 +19,19 @@ public class OxygenBar : MonoBehaviour
         slider.value = oxygen;
     }
 
+    public void AddOxygen(float oxygen)
+    {
+        if (slider.value + oxygen > slider.maxValue)
+        {
+            slider.value = slider.maxValue;
+
+        }
+
+        else
+        {
+            //slider.value = slider.value + oxygen;
+        }
+    }
+
 
 }

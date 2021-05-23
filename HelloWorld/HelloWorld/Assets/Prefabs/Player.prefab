@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 5541062082838396434}
   - component: {fileID: 812563259}
   - component: {fileID: 2923610210181744326}
-  - component: {fileID: -4488443583386771900}
+  - component: {fileID: 1891982810}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -177,6 +177,7 @@ MonoBehaviour:
   onPlanetDrag: 3.5
   upAdjustmentSpeed: 5
   secondsCount: 0
+  inPlanetGrav: 0
   maxOxygenSeconds: 10
   bar: {fileID: 0}
   controller: {fileID: 0}
@@ -212,7 +213,8 @@ MonoBehaviour:
   laserSpawn: {fileID: 1833455731}
   laserSpeed: 20
   laser: {fileID: 2364672145891124875, guid: 26206aa683d85424dba0133d18ebc636, type: 3}
---- !u!114 &-4488443583386771900
+  move: {fileID: 5541062082838396434}
+--- !u!114 &1891982810
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -221,7 +223,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5541062082838396435}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c67e5cc1c5aac64c945f68bec3839c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 8aae5ab8b4f90894d8eff8ff2dba017c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currScore: 0

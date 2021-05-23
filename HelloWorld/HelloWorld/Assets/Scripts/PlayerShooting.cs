@@ -10,6 +10,7 @@ public class PlayerShooting : MonoBehaviour
     private Transform laserSpawn;
     [SerializeField] 
     private float laserSpeed = 20f;
+    [SerializeField] public float laserForce;
     [SerializeField]
     private GameObject laser;
 
@@ -52,7 +53,7 @@ public class PlayerShooting : MonoBehaviour
 
         if(! move.inPlanetGrav)
         {
-            body.AddForce(dir * -1 * laserSpeed, ForceMode2D.Impulse);
+            body.AddForce(dir * -1 * laserForce, ForceMode2D.Impulse);
         }
     }
 

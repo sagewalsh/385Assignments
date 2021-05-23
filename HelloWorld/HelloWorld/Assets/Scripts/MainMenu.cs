@@ -7,11 +7,11 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("PlayerTeam", LoadSceneMode.Single);
     }
 
     public void ControlScene()
     {
-        SceneManager.LoadScene("Controls");
+        SceneManager.LoadScene("Controls", LoadSceneMode.Single);
     }
 }

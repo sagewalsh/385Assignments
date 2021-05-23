@@ -136,6 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 10
+  oxygen: 1
 --- !u!1 &953981148692085549
 GameObject:
   m_ObjectHideFlags: 0
