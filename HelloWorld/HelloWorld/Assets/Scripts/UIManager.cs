@@ -12,6 +12,9 @@ public class UIManager : MonoBehaviour
     public float airCurr;
     [SerializeField] public Text Air;
 
+    public int score;
+    [SerializeField] public Text PlayerScore;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,5 +25,6 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         Ammo.text = "Ammo Count: " + ammoCount;
+        PlayerScore.text = "Score: " + score;
     }
 }

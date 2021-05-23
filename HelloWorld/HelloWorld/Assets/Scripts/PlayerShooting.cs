@@ -14,9 +14,16 @@ public class PlayerShooting : MonoBehaviour
     private GameObject laser;
 
     private PlayerAmmo ammo;
+    private Rigidbody2D body;
+    public PlayerMovement move;
 
     private void Start()
     {
+        /*----------------------------------------------------------------------
+        //Gets the Players Rigidbody Collider
+        ------------------------------------------------------------------------*/
+        body = GetComponent<Rigidbody2D>();
+
         ammo = GetComponent<PlayerAmmo>();
     }
 
@@ -42,6 +49,11 @@ public class PlayerShooting : MonoBehaviour
         spawnedLaser.velocity = laserSpeed * dir;
 
         RotateLaser(mousePos, spawnedLaser.transform);
+
+        if(! move.inPlanetGrav)
+        {
+            body.AddForce(dir * -1 * laserSpeed, ForceMode2D.Impulse);
+        }
     }
 
     private void RotateLaser(Vector3 mousePos, Transform laserTransform)

@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 jumpDir;
 
     [SerializeField] private float secondsCount;
-    bool inPlanetGrav;
+    public bool inPlanetGrav;
 
     public float maxOxygenSeconds;
 
@@ -212,6 +212,14 @@ public class PlayerMovement : MonoBehaviour
             {
                 controller.EndGame();
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Die();
         }
     }
 

@@ -8,6 +8,7 @@ TagManager:
   - Gravity
   - Ammo
   - Enemy
+  - Coin
   layers:
   - Default
   - TransparentFX
