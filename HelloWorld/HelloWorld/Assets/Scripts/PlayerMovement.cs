@@ -27,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
 
     public OxygenBar bar;
 
+    private ParticleSystem jump;
+
     private Dictionary<GravityPoint, Vector3> trackedForces;
     public GameConScript controller;
 
@@ -36,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
         //Gets the Players Rigidbody Collider
         ------------------------------------------------------------------------*/
         body = GetComponent<Rigidbody2D>();
+
+        jump = GetComponentInChildren<ParticleSystem>();
         
         /*----------------------------------------------------------------------
         //Just caches the players transform to be used in the rest of the code
@@ -79,9 +83,16 @@ public class PlayerMovement : MonoBehaviour
         //otherwise we just whatever direction we jumped in before
         //for any jumps after the first
 
+        
+
         if (currJumps == 0)
         {
             jumpDir = thisTransform.up;
+        }
+
+        else if (currJumps == 1)
+        {
+            jump.Play();
         }
 
         /*------------------------------------------------------
