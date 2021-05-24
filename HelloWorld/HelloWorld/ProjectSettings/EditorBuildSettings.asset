@@ -14,10 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlayerTeam.unity
     guid: 99eefdc8da0f09447b9b357f12321a7b
-  - enabled: 0
-    path: Assets/Scenes/AlienTeam.unity
-    guid: a34ed257ba2ac704680eea42874dad98
   - enabled: 1
     path: Assets/Scenes/Controls.unity
     guid: bd2ac45305144fb4fb232d0501fbb7a1
+  - enabled: 0
+    path: Assets/Scenes/AlienTeam.unity
+    guid: a34ed257ba2ac704680eea42874dad98
   m_configObjects: {}

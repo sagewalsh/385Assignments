@@ -31,4 +31,9 @@ public class PlayerScore : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
+
+    public void AddScore(int score)
+    {
+        currScore += score;
+    }
 }

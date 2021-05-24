@@ -149,3 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 4096938733679738899, guid: 3fdfc4de6a621264a94a43b078fac6f8, type: 3}
+  currHealth: 0
+  maxHealth: 3
+  scoreBonus: 50
+  ui: {fileID: 0}

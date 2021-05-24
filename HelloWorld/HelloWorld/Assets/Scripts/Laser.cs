@@ -23,7 +23,7 @@ public class Laser : MonoBehaviour
     {
         if(other.CompareTag("Enemy"))
         {
-            other.GetComponent<UFOHealth>().Die();
+            other.GetComponent<UFOHealth>().TakeDamage(1);
             Die();
         }
     }
