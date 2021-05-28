@@ -9,8 +9,11 @@ public class PlayerMovement : MonoBehaviour
     public Sprite left, right;
     [SerializeField] private int MaxJumps;
     [SerializeField] private float onPlanetDrag = 3.5f;
-    [SerializeField] 
+    [SerializeField]
     [Tooltip("Speed the player will adjust to the new up direction, as calculated by the summation of all external forces")]
+
+    
+
     private float upAdjustmentSpeed = 0.1f;
 
     private int currJumps;
@@ -19,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     private Transform thisTransform;
     private Rigidbody2D body;
     private Vector3 jumpDir;
+
+    [SerializeField] ParticleSystem hover;
 
     [SerializeField] private float secondsCount;
     public bool inPlanetGrav;
@@ -32,8 +37,14 @@ public class PlayerMovement : MonoBehaviour
     private Dictionary<GravityPoint, Vector3> trackedForces;
     public GameConScript controller;
 
+    private Animator anim;
+
+    private PlayerHealth health; 
+
     private void Start()
     {
+        health = GetComponent<PlayerHealth>();
+
         /*----------------------------------------------------------------------
         //Gets the Players Rigidbody Collider
         ------------------------------------------------------------------------*/
@@ -56,6 +67,11 @@ public class PlayerMovement : MonoBehaviour
         inPlanetGrav = true;
         secondsCount = 0;
         bar.SetMaxOxygen(maxOxygenSeconds);
+
+        anim = GetComponent<Animator>();
+
+        anim.SetInteger("Jumping", 0);
+        
     }
 
     private void Update()
@@ -83,11 +99,14 @@ public class PlayerMovement : MonoBehaviour
         //otherwise we just whatever direction we jumped in before
         //for any jumps after the first
 
-        
+
+        anim.SetInteger("Jumping", 1);
 
         if (currJumps == 0)
         {
+            FindObjectOfType<SFXManager>().PlaySound("PlayerJump");
             jumpDir = thisTransform.up;
+            hover.Stop();
         }
 
         else if (currJumps == 1)
@@ -96,29 +115,16 @@ public class PlayerMovement : MonoBehaviour
         }
 
         /*------------------------------------------------------
-        //Addes Force to the player in the up direction
+        //Adds Force to the player in the up direction
         -------------------------------------------------------*/
-
+        FindObjectOfType<SFXManager>().PlaySound("PlayerJump");
         body.AddForce(jumpDir * jumpPower, ForceMode2D.Impulse);
         currJumps++;
     }
 
     private void FixedUpdate()
     {
-        /*--------------------------------------------------------------------------------------------------
-         Players movement
-        ---------------------------------------------------------------------------------------------------*/
 
-        body.AddForce(thisTransform.right * horizontal * moveSpeed);
-        if(moveSpeed < 0 || horizontal < 0)
-        {
-            render.sprite = left;
-        }
-        else
-        {
-            render.sprite = right;
-        }
-        
         /*-----------------------------------------------------------------------------------------------
         //update the player's up direction based on all external forces
         ------------------------------------------------------------------------------------------------*/
@@ -133,11 +139,33 @@ public class PlayerMovement : MonoBehaviour
             bar.SetOxygen(maxOxygenSeconds - secondsCount);
 
         }
-        else if (!inPlanetGrav) { 
+        else if (!inPlanetGrav)
+        {
             inPlanetGrav = true;
             bar.SetOxygen(maxOxygenSeconds);
-            secondsCount = 0; 
+            secondsCount = 0;
         }
+
+
+        /*--------------------------------------------------------------------------------------------------
+         Players movement
+        ---------------------------------------------------------------------------------------------------*/
+        if (inPlanetGrav)
+        {
+            body.AddForce(thisTransform.right * horizontal * moveSpeed);
+        }
+        
+
+        if(moveSpeed < 0 || horizontal < 0)
+        {
+            render.sprite = left;
+        }
+        else
+        {
+            render.sprite = right;
+        }
+        
+        
 
 
    }
@@ -216,6 +244,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (obj.collider.CompareTag("Planet") || obj.collider.CompareTag("Finish"))
         {
+            hover.Play();
+            anim.SetInteger("Jumping", 0);
             currJumps = 0;
             body.drag = onPlanetDrag;
 
@@ -226,13 +256,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            Die();
-        }
-    }
+    
 
     private void Die()
     {

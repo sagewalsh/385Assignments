@@ -17,7 +17,7 @@ public class UFOControl : MonoBehaviour
     private float movementSpeed;
     [SerializeField]
     private bool followOnLookAway;
-
+    [SerializeField] public float damage;
     private bool enemyCanSeePlayer;
     private bool playerIsLookingAway;
 

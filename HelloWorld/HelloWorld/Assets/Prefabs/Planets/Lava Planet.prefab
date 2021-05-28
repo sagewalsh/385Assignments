@@ -144,10 +144,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c9abad1d3c374547b550ef2285661a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityScale: 10
+  gravityScale: 20
+  gravityMinRange: 3
+  gravityMaxRange: 6
   planetRadius: 1.5
-  gravityMinRange: 2.5
-  gravityMaxRange: 7
+  FinalPlanet: 0
   minGravityScaleFuzz: 0.01
   maxGravityScaleFuzz: 0.02
 --- !u!58 &4423896464939698600
@@ -165,4 +166,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.8333333
+  m_Radius: 1.897143

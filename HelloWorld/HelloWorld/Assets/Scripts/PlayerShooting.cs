@@ -33,6 +33,7 @@ public class PlayerShooting : MonoBehaviour
         if(Input.GetButtonDown("Fire1") && ammo.consumeAmmo(1))
         {
             ShootLaser();
+            FindObjectOfType<SFXManager>().PlaySound("PlayerShootLaser");
         }
     }
 
