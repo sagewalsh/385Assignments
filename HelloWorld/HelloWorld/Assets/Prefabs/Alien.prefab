@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 4096938733679738899, guid: 3fdfc4de6a621264a94a43b078fac6f8, type: 3}
+  AlienCracked: {fileID: 5405076692570614713, guid: 9860e6660b0f44b4f8a3b068488b7a4e, type: 3}
   currHealth: 0
   maxHealth: 3
   scoreBonus: 50
@@ -160,7 +161,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.245}

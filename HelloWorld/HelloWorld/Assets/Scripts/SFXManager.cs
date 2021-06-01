@@ -16,24 +16,11 @@ public class SFXManager : MonoBehaviour
             sfx.audioSource.pitch = sfx.pitch;
         }
     }
-
-
     public void PlaySound(string sfxSearch)
     {
-        Debug.Log("Search Array");
         SFX sfx = Array.Find(soundEffects, sfx => sfx.name == sfxSearch);        
 
-        if(sfx == null)
-        {
-            Debug.Log("No SFX file found");
-        }
-        else
-        {
-            sfx.audioSource.Play();
-        }
-        
+        if(sfx != null) sfx.audioSource.Play();
+        else Debug.Log("No SFX file found");
     }
-
-
-
 }
