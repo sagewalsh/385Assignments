@@ -258,9 +258,8 @@ public class PlayerMovement : MonoBehaviour
 
     
 
-    private void Die()
+    public void Die()
     {
-        Destroy(gameObject);
         controller.Restart();
     }
 }

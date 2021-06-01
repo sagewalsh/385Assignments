@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("PlayerTeam");
+        SceneManager.LoadScene("FinalScene");
     }
 
     public void ControlScene()

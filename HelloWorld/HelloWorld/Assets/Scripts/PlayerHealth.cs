@@ -17,11 +17,14 @@ public class PlayerHealth : MonoBehaviour
 
     private SpriteRenderer sr;
 
+    [SerializeField] PlayerMovement movement;
+
     private Color c;
 
     // Start is called before the first frame update
     void Start()
     {
+        movement = GetComponent<PlayerMovement>();
         currHealth = MaxHealth;
         bar.SetHealth(currHealth);
         invincTimeStamp = 0;
@@ -49,7 +52,7 @@ public class PlayerHealth : MonoBehaviour
         if (currHealth <= 0)
         {
             FindObjectOfType<SFXManager>().PlaySound("PlayerDie");
-            Destroy(gameObject);
+            movement.Die();
         }
 
         bar.SetHealth(currHealth);
