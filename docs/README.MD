@@ -9,4 +9,6 @@
 ## Final Project
 [Repository](https://github.com/sagewalsh/385Assignments/tree/main/HelloWorld/HelloWorld)
 
-The Website for the [Prototypes](https://sagewalsh.github.io/385Assignments/HelloWorld)
+The Website for the [Prototypes](https://sagewalsh.github.io/385Assignments/HelloWorld/Development)
+
+The Website for the [Final Game](https://sagewalsh.github.io/385Assignments/HelloWorld)
