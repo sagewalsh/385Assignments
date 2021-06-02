@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/AlienTeam.unity
     guid: a34ed257ba2ac704680eea42874dad98
+  - enabled: 1
+    path: Assets/Scenes/FinalSceneWithTutorial.unity
+    guid: 7c2ede4e1ca3e9d48b4eda1561b32d60
   m_configObjects: {}
