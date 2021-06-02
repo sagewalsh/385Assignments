@@ -11,17 +11,21 @@
         
 
         
-        <div id="Home" onClick="JavaScript:selectTab(1);">Home</div>
-        <div id="AboutUs" onClick="JavaScript:selectTab(2);">About Us</div>
-        <div id="Game" onClick="JavaScript:selectTab(3);">Game</div>
-        <br/>
-        <div id="tab1Content">
+        <div class="tab">
+            <button class = "tablinks" onclick = "openCity(event, 'Home')">Home</button>
+            <button class = "tablinks" onclick = "openCity(event, 'AboutUs')">About Us</button>
+            <button class = "tablinks" onclick = "openCity(event, 'Game')">Game</button>
+          </div>
+
+        <div id="Home" class="tabcontent">
         Homepage
         </div>
-        <div id="tab2Content">
+
+        <div id="AbobutUs" class="tabcontent">
         Credits
         </div>
-        <div id="tab3Content">
+
+        <div id="Game" class="tabcontent">
         <a href = https://sagewalsh.github.io/385Assignments/HelloWorld/BetaPrototype>Here is the game!</a>
         </div>
     </body>
