@@ -10,6 +10,11 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("FinalScene");
     }
 
+    public void PlayGameTutorial()
+    {
+        SceneManager.LoadScene("FinalSceneWithTutorial");
+    }
+
     public void ControlScene()
     {
         SceneManager.LoadScene("Controls");

@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 8190196973296053260}
   - component: {fileID: 3738167197221819405}
   - component: {fileID: 6801469510114862913}
-  - component: {fileID: 3808586748164485638}
-  - component: {fileID: 7092345546701247220}
+  - component: {fileID: 3777579600145546839}
   m_Layer: 0
   m_Name: Alien
   m_TagString: Enemy
@@ -151,8 +150,8 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!70 &3808586748164485638
-CapsuleCollider2D:
+--- !u!60 &3777579600145546839
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -164,25 +163,36 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.245}
-  m_Size: {x: 0.99, y: 0.3}
-  m_Direction: 1
---- !u!58 &7092345546701247220
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8190196973296053261}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.03}
-  serializedVersion: 2
-  m_Radius: 0.22
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1.28, y: 1.28}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.5, y: -0.171875}
+      - {x: 0.453125, y: -0.1171875}
+      - {x: 0.2578125, y: -0.03125}
+      - {x: 0.2421875, y: 0.109375}
+      - {x: 0.1328125, y: 0.1953125}
+      - {x: 0.1015625, y: 0.2109375}
+      - {x: -0.15625, y: 0.2109375}
+      - {x: -0.265625, y: 0.0546875}
+      - {x: -0.4140625, y: -0.0859375}
+      - {x: -0.5, y: -0.1640625}
+      - {x: -0.5, y: -0.296875}
+      - {x: -0.453125, y: -0.3515625}
+      - {x: -0.3046875, y: -0.4140625}
+      - {x: -0.1796875, y: -0.4375}
+      - {x: 0.15625, y: -0.4375}
+      - {x: 0.3046875, y: -0.4140625}
+      - {x: 0.453125, y: -0.3515625}
+      - {x: 0.5, y: -0.296875}
 --- !u!1001 &699049290112423780
 PrefabInstance:
   m_ObjectHideFlags: 0

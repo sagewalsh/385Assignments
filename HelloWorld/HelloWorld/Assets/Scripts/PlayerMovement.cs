@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
         //Space bar on keyboard
         //Forgot to add the "isGrounded" part that the video says
         //Would that mess up the double jump?
-        if(Input.GetButtonDown("Jump") && currJumps < MaxJumps)
+        if((Input.GetButtonDown("Jump") || Input.GetKeyDown("w") || Input.GetKeyDown("up")) && currJumps < MaxJumps)
         {
             Jump();
         }
