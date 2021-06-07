@@ -1,11 +1,19 @@
 <o1>
     <head>
+
+    <!-- Tab title -->
     <title>Hello World</title>
+
     </head>
+
+
     <body style = "background-color: darkslategray;">
+
+        <!-- Page Heading -->
         <h1>Hello World</h1>
         <p>We created a game called Hello World!</p>
 
+        <!-- Hello World Photo Placeholder -->
         <img src = "HelloPhotoPlaceholder.jpg" alt = "Image Placeholder" width="972" height="544">
 
         
@@ -48,5 +56,33 @@
         <h3>About</h3>
         <p>Who we are and what we do.</p>
         </div>
+
+<!--------------------------------------------------------------------------------------------->
+<!-- Javascript to make the buttons work -->
+    <script>
+            function openPage(pageName, elmnt, color) {
+            // Hide all elements with class="tabcontent" by default */
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+            }
+        
+            // Remove the background color of all tablinks/buttons
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].style.backgroundColor = "";
+            }
+        
+            // Show the specific tab content
+            document.getElementById(pageName).style.display = "block";
+        
+            // Add the specific color to the button used to open the tab content
+            elmnt.style.backgroundColor = color;
+        }
+        
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+        </script>
     </body>
 </o1>
