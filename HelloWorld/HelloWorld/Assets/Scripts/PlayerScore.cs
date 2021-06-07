@@ -28,7 +28,7 @@ public class PlayerScore : MonoBehaviour
         {
             currScore += collision.GetComponent<Coin>().value;
             oBar.AddOxygen(collision.GetComponent<Coin>().oxygen);
-            FindObjectOfType<SFXManager>().PlaySound("CoinPickup");
+            SFXManager.instance.PlaySound("CoinPickup");
             Destroy(collision.gameObject);
         }
     }

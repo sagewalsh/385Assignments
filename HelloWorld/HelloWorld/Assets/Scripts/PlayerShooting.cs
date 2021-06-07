@@ -30,10 +30,15 @@ public class PlayerShooting : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetButtonDown("Fire1") && ammo.consumeAmmo(1))
+        if (PauseMenu.isPaused)
+        {
+            return;
+        }
+
+        if (Input.GetButtonDown("Fire1") && ammo.consumeAmmo(1))
         {
             ShootLaser();
-            FindObjectOfType<SFXManager>().PlaySound("PlayerShootLaser");
+            SFXManager.instance.PlaySound("PlayerShootLaser");
         }
     }
 

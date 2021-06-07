@@ -21,7 +21,6 @@ public class GameConScript : MonoBehaviour
         {
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
-
 #else
             Application.Quit();
 #endif
@@ -39,11 +38,21 @@ public class GameConScript : MonoBehaviour
         victoryText.text = "VICTORY!";
     }
 
+    public void RestartAfterDelay(float timeToWait)
+    {
+        StartCoroutine(WaitForRestart(timeToWait));
+    }
+
+    private IEnumerator WaitForRestart(float timeToWait)
+    {
+        yield return new WaitForSeconds(timeToWait);
+        Restart();
+    }
+
     //Call this method to restart whatever scene you are in 
     public void Restart()
     {
         string scene = SceneManager.GetActiveScene().name;
-
         SceneManager.LoadScene(scene, LoadSceneMode.Single);
     }
 }

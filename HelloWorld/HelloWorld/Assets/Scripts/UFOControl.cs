@@ -8,7 +8,6 @@ using UnityEngine;
 
 public class UFOControl : MonoBehaviour
 {
-    private PlayerMovement player;
     [SerializeField] 
     private float playerRange;
     [SerializeField]
@@ -17,7 +16,10 @@ public class UFOControl : MonoBehaviour
     private float movementSpeed;
     [SerializeField]
     private bool followOnLookAway;
-    [SerializeField] public float damage;
+    [SerializeField] 
+    public float damage;
+
+    private PlayerMovement player;
     private bool enemyCanSeePlayer;
     private bool playerIsLookingAway;
 
@@ -25,7 +27,7 @@ public class UFOControl : MonoBehaviour
     private int randomSpot;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         //Caches the playerMovement Script
         player = FindObjectOfType<PlayerMovement>();
@@ -36,6 +38,11 @@ public class UFOControl : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if(!player)
+        {
+            return;
+        }
+
         //Always looks for players distance and sets the flag
         PlayerRangePing();
 
@@ -53,6 +60,11 @@ public class UFOControl : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!player)
+        {
+            return;
+        }
+
         if (!followOnLookAway && enemyCanSeePlayer)
         {
                 Pursue();

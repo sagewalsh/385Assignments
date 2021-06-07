@@ -13,6 +13,8 @@ public class SFX
     [Range(0f, 1f)]
     public float pitch;
 
+    public bool loop;
+
     [HideInInspector]
     public AudioSource audioSource;
 }

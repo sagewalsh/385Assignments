@@ -16,7 +16,11 @@ public class MainCamera : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(!player)
+        {
+            return;
+        }
+
         transform.position = new Vector3(player.position.x, player.position.y, zoomOut);
-        
     }
 }

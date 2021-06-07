@@ -29,6 +29,7 @@ public class PlayerAmmo : MonoBehaviour
         if (collision.tag == "Ammo")
         {
             currAmmo += pickupAmount;
+            SFXManager.instance.PlaySound("AmmoPickup");
             Destroy(collision.gameObject);
         }
     }

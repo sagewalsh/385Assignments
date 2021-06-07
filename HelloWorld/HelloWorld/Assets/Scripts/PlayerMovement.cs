@@ -76,6 +76,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if(PauseMenu.isPaused)
+        {
+            return;
+        }
+
         //Left and Right arrows and A and D on a keyboard
         horizontal = Input.GetAxisRaw("Horizontal"); 
 
@@ -104,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (currJumps == 0)
         {
-            FindObjectOfType<SFXManager>().PlaySound("PlayerJump");
+            SFXManager.instance.PlaySound("PlayerJump");
             jumpDir = thisTransform.up;
             hover.Stop();
         }
@@ -117,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
         /*------------------------------------------------------
         //Adds Force to the player in the up direction
         -------------------------------------------------------*/
-        FindObjectOfType<SFXManager>().PlaySound("PlayerJump");
+        SFXManager.instance.PlaySound("PlayerJump");
         body.AddForce(jumpDir * jumpPower, ForceMode2D.Impulse);
         currJumps++;
     }
@@ -256,10 +261,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    
-
     public void Die()
     {
-        controller.Restart();
+        SFXManager.instance.PlaySound("PlayerDie");
+        controller.RestartAfterDelay(3f);
+        Destroy(this.gameObject);
     }
 }

@@ -24,7 +24,7 @@ public class UFOHealth : MonoBehaviour
 
     public void Die()
     {
-        FindObjectOfType<SFXManager>().PlaySound("EnemyExplosion");
+        SFXManager.instance.PlaySound("EnemyExplosion");
         Instantiate(explosion, this.transform.position, this.transform.rotation);
         //playerScore.AddScore(scoreBonus);
         Destroy(this.gameObject);

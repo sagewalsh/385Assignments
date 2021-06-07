@@ -38,7 +38,6 @@ public class PlayerHealth : MonoBehaviour
         {
             sr.color = Color.red;
         }
-
         else
         {
             sr.color = c;
@@ -51,7 +50,6 @@ public class PlayerHealth : MonoBehaviour
 
         if (currHealth <= 0)
         {
-            FindObjectOfType<SFXManager>().PlaySound("PlayerDie");
             movement.Die();
         }
 
