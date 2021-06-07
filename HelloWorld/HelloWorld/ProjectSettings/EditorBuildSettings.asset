@@ -11,19 +11,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 0fa337a418e89224d80cf1840a40c505
-  - enabled: 1
-    path: Assets/Scenes/FinalScene.unity
-    guid: 6b4c60b96a4becc4ebc4694f04adc7fd
   - enabled: 0
     path: Assets/Scenes/PlayerTeam.unity
     guid: 99eefdc8da0f09447b9b357f12321a7b
+  - enabled: 0
+    path: Assets/Scenes/FinalScene.unity
+    guid: 6b4c60b96a4becc4ebc4694f04adc7fd
+  - enabled: 1
+    path: Assets/Scenes/FinalSceneWithoutTutorial.unity
+    guid: 3571828c46dce244c822312f29c140ea
+  - enabled: 1
+    path: Assets/Scenes/FinalSceneWithTutorial.unity
+    guid: 7c2ede4e1ca3e9d48b4eda1561b32d60
   - enabled: 1
     path: Assets/Scenes/Controls.unity
     guid: bd2ac45305144fb4fb232d0501fbb7a1
   - enabled: 0
     path: Assets/Scenes/AlienTeam.unity
     guid: a34ed257ba2ac704680eea42874dad98
-  - enabled: 1
-    path: Assets/Scenes/FinalSceneWithTutorial.unity
-    guid: 7c2ede4e1ca3e9d48b4eda1561b32d60
   m_configObjects: {}
