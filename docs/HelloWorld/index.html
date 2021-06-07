@@ -6,11 +6,6 @@
 
     </head>
 
-        <!-- Page Heading -->
-        <h1 color = "#94e7c2" face = "optima">
-            <b>Hello World</b>
-        </h1>
-
         <!-- Tab Buttons -->
         <button class="tablink" onclick="openPage('Home', this, '#424875')" id = "defaultOpen">Home</button>
         <button class="tablink" onclick="openPage('Game', this, '#283242')">Game</button>
@@ -18,7 +13,10 @@
 
         <!-- Home Tab Content -->
         <div id="Home" class="tabcontent">
-
+            <!-- Page Heading -->
+            <h1 color = "#94e7c2" face = "optima">
+                <b>Hello World</b>
+            </h1>
             <!-- Hello World Photo Placeholder -->
             <img src = "HelloPhotoPlaceholder.jpg" alt = "Image Placeholder" width="678" height="362">
             
@@ -92,7 +90,7 @@
             body, html {
                 height: 100%;
                 margin: 10;
-                font-family: Optima;
+                font-family: optima,monaco;
             }
             
             /* Style tab links */
@@ -105,7 +103,7 @@
                 cursor: pointer;
                 padding: 14px 16px;
                 font-size: 17px;
-                width: 33%;
+                width: 33.33%;
             }
             
             .tablink:hover {
