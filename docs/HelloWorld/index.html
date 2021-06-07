@@ -6,9 +6,6 @@
 
     </head>
 
-
-    <body style = "background-color: #010a20;">
-
         <!-- Page Heading -->
         <h1 color = "#94e7c2" face = "optima">
             <b>Hello World</b>
@@ -34,12 +31,12 @@
         <!-- Game Tab Contents -->
         <div id="Game" class="tabcontent">
 
-            <h3 color = "dce0e8" font = "monaco">
+            <h3 color = "#dce0e8" font = "monaco">
                 Game
             </h3>
             
             <!-- Description of the Game and How to Play -->
-            <p color = "dce0e8" font = "monaco">
+            <p color = "#dce0e8" font = "monaco">
                 We made a dope ass game and we hope you like it.
             </p>
 
@@ -51,12 +48,12 @@
         <!-- About Us Tab Contents -->
         <div id="About" class="tabcontent">
 
-            <h3 color = "#dce0e8">
+            <h3 color = #6a6e9c>
                 About Us
             </h3>
             
             <!-- Description of Who We Are and Why We Made the Game -->
-            <p color = "dce0e8">
+            <p color = #283242>
                 This is who we are. You better like it.
             </p>
         </div>
@@ -89,5 +86,44 @@
         document.getElementById("defaultOpen").click();
         </script>
 <!--------------------------------------------------------------------------------------------->
-    </body>
+<!-- C Sharp Code for Styling -->
+        <style>
+            /* Set height of body and the document to 100% to enable "full page tabs" */
+            body, html {
+                height: 100%;
+                margin: 0;
+                font-family: Arial;
+            }
+            
+            /* Style tab links */
+            .tablink {
+                background-color: #555;
+                color: white;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                font-size: 17px;
+                width: 25%;
+            }
+            
+            .tablink:hover {
+                background-color: #777;
+            }
+            
+            /* Style the tab content (and add height:100% for full page content) */
+            .tabcontent {
+                color: white;
+                display: none;
+                padding: 100px 20px;
+                height: 100%;
+            }
+            
+            #Home {background-color: #010a20;}
+            #Game {background-color: #424875;}
+            #About {background-color: #50a2b7;}
+        </style>
+<!--------------------------------------------------------------------------------------------->
+</body>
 </o1>
