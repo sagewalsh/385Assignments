@@ -10,6 +10,7 @@
         <button class="tablink" onclick="openPage('Home', this, '#424875')" id = "defaultOpen">Home</button>
         <button class="tablink" onclick="openPage('Game', this, '#283242')">Game</button>
         <button class="tablink" onclick="openPage('Log', this, '#50a2b7')">Development Log</button>
+        <button class="tablink" onclick="openPage('Playtesting', this, 'white')">Playtesting</button>"
         <button class="tablink" onclick="openPage('About', this, '#c9d45b')">About</button>
 
         <!-- Home Tab Content -->
@@ -30,13 +31,16 @@
         <!-- Game Tab Contents -->
         <div id="Game" class="tabcontent">
 
-            <h1>
-                Game
-            </h1>
+            <h1>The Game</h1>
             
             <!-- Description of the Game and How to Play -->
             <h2>
-                We made a dope ass game and we hope you like it.
+                Hello World is a 2D platformer inspired by Super Mario Galaxy that 
+                was released in 2007 for the Nintendo Wii. What made this game feel 
+                and play unique would be the way the player wIn it, the player controls 
+                a large robot continuing to the last city of humanity. The robot is 
+                traveling through space, hopping between planets to find a new world to 
+                settle. On the way, the robot must battle deadly aliens.
             </h2>
 
             <!-- Link to the Final Game -->
@@ -156,6 +160,116 @@
                 <li>Utilizes out of gravity shooting more frequently</li>
         </div>
 
+        <!-- Playtesting Tab Contents -->
+        <div id="Playtesting" class="tabcontent">
+                <h1>Playtesting</h1>
+
+                <h2>Playtesting Script</h2>
+                
+                <p>For all sessions, participants were asked the following questions. 
+                    Additionally, they shared their screen and shared how they felt about 
+                    the game as they played it.
+                </p>
+                
+                <li>Does teh game feel intuitive?</li>
+                <li>On a scale of 1 to 5: How fun did you find the game?</li>
+                <li>On a scale of 1 to 5: How hard did you find the game?</li>
+                <li>Would you like the game to be harder, easier, or stay the same?</li>
+                <li>Which planet size is your favorite?</li>
+                <li>Which planet's gravity "feels" best?</li>
+                <li>Were there any planets you hated?</li>
+                <li>Did you like the coin placement?</li>
+                <li>Did you like the speed of the player?</li>
+                <li>Did you know the bullets could propel you when you are out of gravity?</li>
+                <li>Were there any parts of the game you found too difficult?</li>
+                <li>Were there any parts of the game you found too easy?</li>
+                <li>Did the game feel mundane?</li>
+                <li>Were there any changes you would make to the game if you could?</li>
+                <li>Did you like the music?</li>
+                <li>Did you like the animation/artwork?</li>
+
+                <h2>Session 1: Alpha</h2>
+                <p>Reviewers: 12</p>
+
+                <dt>The most common critiques were:</dt>
+                <li>It is easy to die if an alien is right where you land</li>
+                <li>Green orbs are not clearly ammo</li>
+                <li>The ability to shoot through planets is not intuitive</li>
+                <li>Checkpoints would be a great addition</li>
+                <li>Shooting in zero gravity is not intuitive</li>
+                <li>Bullets do not clearly damage the enemies</li>
+                <li>It is not clear how to jump high enough to escape the planet</li>
+                <li>A progress bar would be helpful</li>
+                <li>The movement could be snappier</li>
+                <li>The game's single hit to die system is unforgiving</li>
+                <li>The coin placement should be closer to the planet in some cases</li>
+                <li>Enemy's collider could fit better</li>
+
+                <dt>Changes as a result of the feedback:</dt>
+                <li>Added a player health bar that takes 3 hits to die</li>
+                <li>Adjusted the enemy's collider</li>
+                <li>Added tutorial text to train the player of mechanics</li>
+                <li>Rebuilt the level making jumps easier</li>
+                <li>Fixed the coin placement</li>
+                <li>Added cracks in the enemy's sprite to indicate health</li>
+
+                <h2>Session 2: Beta</h2>
+                <p>Reviewers: 6</p>
+
+                <dt>The most common critiques were:</dt>
+                <li>The artwork is inconsistent</li>
+                <li>The music is too loud</li>
+                <li>The sound effects are too loud</li>
+                <li>There is no way to mute the sound</li>
+                <li>The tutorial text goes away too quickly</li>
+                <li>Player feels too slow</li>
+
+                <dt>Changes made as a result of the feedback:</dt>
+                <li>Sound and music levels were adjusted</li>
+                <li>A mute button was added</li>
+                <li>Tutorial text time was lengthened</li>
+
+                <h2>Session 3: Final Playtest</h2>
+                <p>Reviewers: 10</p>
+
+                <dt>The most common critiques were:</dt>
+                <li>The player feels too slow</li>
+                <li>The game could use a healing system</li>
+                <li>It is frustrating when you hit aliens while jumping between planets</li>
+                <li>The game could use an alien indicator</li>
+                <li>Double jump timing is not intuitive</li>
+                <li>More zero gravity sections would be fun</li>
+                <li>Larger planets and smalelr planets are not as fun as the medium ones</li>
+                <li>Aliens could be more difficult</li>
+                <li>Muted audio resets after player death</li>
+                <li>The shooting sound is too loud</li>
+                <li>The level is too long</li>
+                <li>The game is only one level</li>
+
+                <p>The first change in the final build of the game will be to address audio 
+                    bugs. The second change will be increasing the player speed slightly. 
+                    We have a lot of feedback saying the player should be faster. However, 
+                    if they are too fast some of the game physics do not work as well. A 
+                    third change in the final build of the game will be a healing system. 
+                    Coins will slightly heal the player, making the game more forgiving and 
+                    giving another reason to collect coins.
+                </p>
+                <p>The first future change we would like to extend the game with is more alien 
+                    types. More aliens types, such as walking aliens and shooting aliens, 
+                    would add more challenge and depth to the game. A second change we would 
+                    like to make is redesigning the double jump. The current double jump is 
+                    not intuitive to the player in how jump height works. Instead of activating 
+                    the second jump at the apex of the first jump, the player must press jump 
+                    for the second time immediately after the first. We would like to rework 
+                    it so that the second jump must be timed with the apex of the first. A 
+                    third change we would like to make is breaking up the game into multiple, 
+                    shortwer levels. This way the player can save their progress more easily 
+                    and lose less progress when they die. This would also make the game longer.
+                </p>
+
+
+
+        </div>
         <!-- About Us Tab Contents -->
         <div id="About" class="tabcontent">
 
@@ -218,7 +332,7 @@
                 cursor: pointer;
                 padding: 14px 16px;
                 font-size: 17px;
-                width: 25%;
+                width: 20%;
             }
             
             .tablink:hover {
@@ -248,6 +362,9 @@
                 background-color: #283242;
                 color: #6a6e9c;
                 font-family: Georgia, 'Times New Roman', Times, serif;
+            }
+            #Playtesting {
+                background-color: 'white';
             }
             #About {
                 background-color: #50a2b7;
