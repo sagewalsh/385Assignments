@@ -9,6 +9,8 @@ public class PlayerScore : MonoBehaviour
     [SerializeField] public UIManager UI;
 
     [SerializeField] public OxygenBar oBar;
+
+    [SerializeField] public PlayerHealth health;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,7 @@ public class PlayerScore : MonoBehaviour
         {
             currScore += collision.GetComponent<Coin>().value;
             oBar.AddOxygen(collision.GetComponent<Coin>().oxygen);
+            health.Heal(collision.GetComponent<Coin>().healAmount);
             SFXManager.instance.PlaySound("CoinPickup");
             Destroy(collision.gameObject);
         }

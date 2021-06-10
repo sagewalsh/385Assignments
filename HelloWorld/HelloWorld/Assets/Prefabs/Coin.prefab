@@ -137,6 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 10
   oxygen: 1
+  healAmount: 0.4
 --- !u!1 &953981148692085549
 GameObject:
   m_ObjectHideFlags: 0

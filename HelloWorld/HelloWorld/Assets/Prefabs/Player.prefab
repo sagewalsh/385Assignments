@@ -4975,7 +4975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f245d27164281148995e7bdcacc2809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 15
+  moveSpeed: 17
   jumpPower: 20
   render: {fileID: 5541062082838396431}
   left: {fileID: 21300000, guid: dddfc8561b209924ab383842d1eb73f3, type: 3}
@@ -5038,6 +5038,7 @@ MonoBehaviour:
   currScore: 0
   UI: {fileID: 0}
   oBar: {fileID: 0}
+  health: {fileID: 0}
 --- !u!95 &2273076108105374669
 Animator:
   serializedVersion: 3

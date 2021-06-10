@@ -30129,9 +30129,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 673706271}
     - target: {fileID: 1891982810, guid: 50921d1052be3b649b727575fbc0805d, type: 3}
+      propertyPath: hBar
+      value: 
+      objectReference: {fileID: 673706269}
+    - target: {fileID: 1891982810, guid: 50921d1052be3b649b727575fbc0805d, type: 3}
       propertyPath: oBar
       value: 
       objectReference: {fileID: 673706270}
+    - target: {fileID: 1891982810, guid: 50921d1052be3b649b727575fbc0805d, type: 3}
+      propertyPath: health
+      value: 
+      objectReference: {fileID: 1487715628}
     - target: {fileID: 2923610210181744326, guid: 50921d1052be3b649b727575fbc0805d, type: 3}
       propertyPath: mainCamera
       value: 
